@@ -5,12 +5,20 @@ public class Duke {
 
     private static void promptUser() {
         Scanner sc = new Scanner(System.in);
-        Message msg = new Message(sc.nextLine());
-        while (msg.compareTo(new Message(EXIT)) != 0) {
-            msg.print();
-            msg = new Message(sc.nextLine());
+        TextList textList = new TextList();
+        String message = sc.nextLine();
+        while (!message.equals(EXIT)) {
+            switch (message) {
+                case "list":
+                    textList.print();
+                    break;
+                default:
+                    System.out.println("added: " + message);
+                    textList.add(message);
+            }
+            message = sc.nextLine();
         }
-        new Message("Bye. Hope to see you again soon!").print();
+        System.out.println("Bye. Hope to see you again soon!");
     }
 
     /**
