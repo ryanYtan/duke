@@ -5,6 +5,9 @@ public class Message implements Comparable<Message> {
         this.message = message;
     }
 
+    /**
+     * Prints the message specified by this object.
+     */
     public void print() {
         System.out.println();
         System.out.println('\t' + message);

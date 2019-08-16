@@ -13,6 +13,10 @@ public class Duke {
         new Message("Bye. Hope to see you again soon!").print();
     }
 
+    /**
+     * Main method.
+     * @param args  list of inputs
+     */
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
