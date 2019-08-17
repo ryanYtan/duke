@@ -16,6 +16,6 @@ public class EventTask extends Task {
      */
     public String toString() {
         return "[E]" + "[" + getStatusIcon() + "] " + description
-            + "(at: " + at + ")";
+            + " (at: " + at + ")";
     }
 }

@@ -16,6 +16,6 @@ public class DeadlineTask extends Task {
      */
     public String toString() {
         return "[D]" + "[" + getStatusIcon() + "] " + description
-            + "(by: " + by + ")";
+            + " (by: " + by + ")";
     }
 }
