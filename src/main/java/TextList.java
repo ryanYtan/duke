@@ -1,19 +1,37 @@
 import java.util.ArrayList;
 
 public class TextList {
-    private ArrayList<String> list;
+    private ArrayList<Task> list;
     private static final int MAX_ITEMS = 100;
 
     public TextList() {
-        list = new ArrayList<String>(MAX_ITEMS);
+        list = new ArrayList<Task>(MAX_ITEMS);
     }
 
     /**
      * Adds the given text into this list of text.
      * @param text  text to be entered
      */
-    public void add(String text) {
-        list.add(text);
+    public void add(Task t) {
+        list.add(t);
+    }
+
+    /**
+     * Marks the i-th element in the list as "done". The value of i treats
+     * the list as a one-indexed list.
+     * @param i     The element to be marked.
+     */
+    public void done(int i) {
+        list.get(i - 1).markAsDone();
+    }
+
+    /**
+     * Gets the i-th element in the list. The value of i treats the list as a
+     * one-indexed list.
+     * @param i     The element to be returned.
+     */
+    public String get(int i) {
+        return list.get(i - 1).toString();
     }
 
     /**
@@ -28,8 +46,8 @@ public class TextList {
             System.out.println("List is empty!");
         } else {
             int i = 1;
-            for (String s : list) {
-                System.out.println(i + ". " + s);
+            for (Task t : list) {
+                System.out.println(i + ". " + t.toString());
                 i++;
             }
         }
