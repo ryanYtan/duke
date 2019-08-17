@@ -12,8 +12,8 @@ public class Task {
      * or not done respectively.
      */
     public String getStatusIcon() {
-        //return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
-        return (isDone ? "y" : "n"); // uses y/n as powershell has difficulty
+        return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+        //return (isDone ? "y" : "n"); // uses y/n as powershell has difficulty
                                        // displaying unicode
     }
 
