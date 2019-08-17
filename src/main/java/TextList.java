@@ -9,6 +9,13 @@ public class TextList {
     }
 
     /**
+     * Returns size of this TextLis object.
+     */
+    public int size() {
+        return this.list.size();
+    }
+
+    /**
      * Adds the given text into this list of text.
      * @param text  text to be entered
      */
