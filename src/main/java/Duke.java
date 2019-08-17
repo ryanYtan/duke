@@ -6,11 +6,18 @@ public class Duke {
 
     private static String[] splitString(String msg) throws IllegalInstructionException {
         int i;
+        boolean slashExists = false;
         String[] arr = msg.split("\\s+");
-        for (i = 0; i < arr.length; i++)
-            if (arr[i].startsWith("/"))
+        for (i = 0; i < arr.length; i++) {
+            if (arr[i].startsWith("/")) {
+                slashExists = true;
                 break;
-        if (i == arr.length - 1) { // nothing after /at or /by
+            }
+        }
+
+        if (!slashExists) {
+            throw new IllegalInstructionException("Deadline or Event commands require \"/by\" or \"/at\" within the command");
+        } else if (i == arr.length - 1) { // nothing after /at or /by
             throw new IllegalInstructionException("No timing given for " + arr[0] + " command.");
         } else if (i == 1) { // nothing between command, or /at or /by
             throw new IllegalInstructionException("No description given for " + arr[0] + " command.");
@@ -83,6 +90,18 @@ public class Duke {
                         textList.done(index);
                         System.out.println("Nice! I've marked this task as done:");
                         System.out.println(textList.get(index));
+                        break;
+                    
+                    case "delete":
+                        if (msg.split("\\s+").length <= 1) {
+                            throw new IllegalInstructionException("No value given to delete.");
+                        }
+                        index = Integer.parseInt(msg.split("\\s+")[1]);
+                        String deleted = textList.get(index);
+                        textList.delete(index);
+                        System.out.println("Noted. I've removed this task");
+                        System.out.println(deleted);
+                        System.out.println("Now you have " + textList.size() + " tasks in the list.");
                         break;
 
                     default: // todo, deadline, event

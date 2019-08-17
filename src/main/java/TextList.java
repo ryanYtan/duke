@@ -38,10 +38,19 @@ public class TextList {
      * @param i     The element to be returned.
      */
     public String get(int i) throws IndexOutOfBoundsException {
-        if (i < 0 || i > list.size()) {
-            throw new IndexOutOfBoundsException("Given value is out-of-bounds of the list!");
+        if (i <= 0 || i > list.size()) {
+            throw new IndexOutOfBoundsException("Given value is out-of-bounds of the list!"
+                    + " You have " + list.size() + " items in the list.");
         }
         return list.get(i - 1).toString();
+    }
+
+    public Task delete(int i) throws IndexOutOfBoundsException {
+        if (i <= 0 || i > list.size()) {
+            throw new IndexOutOfBoundsException("Given value is out-of-bounds of the list!"
+                    + " You have " + list.size() + " items in the list.");
+        }
+        return list.remove(i - 1);
     }
 
     /**
