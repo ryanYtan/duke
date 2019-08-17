@@ -26,40 +26,36 @@ public class Duke {
         }
     }
 
-    private static void handleAddingTasks(String msg) {
-        try {
-            Task t;
-            String command = msg.split("\\s+")[0];
-            switch (command) {
-                case "todo":
-                    if (msg.split("\\s+").length <= 1) {
-                        throw new IllegalInstructionException(
-                                "The description of a todo cannot be empty");
-                    }
-                    t = new TodoTask(msg.substring("todo".length() + 1));
-                    break;
-
-                case "deadline":
-                    String[] infoDeadline = splitString(msg);
-                    t = new DeadlineTask(infoDeadline[0], infoDeadline[1]);
-                    break;
-
-                case "event":
-                    String[] infoEvent = splitString(msg);
-                    t = new EventTask(infoEvent[0], infoEvent[1]);
-                    break;
-
-                default:
+    private static void handleAddingTasks(String msg) throws IllegalInstructionException {
+        Task t;
+        String command = msg.split("\\s+")[0];
+        switch (command) {
+            case "todo":
+                if (msg.split("\\s+").length <= 1) {
                     throw new IllegalInstructionException(
-                            "Sorry! I don't know what that means.");
-            }
-            textList.add(t);
-            System.out.println("Got it. I've added this task:");
-            System.out.println("\t" + t);
-            System.out.println("Now you have " + textList.size() + " tasks in the list.");
-        } catch (IllegalInstructionException e) {
-            System.out.println(e.toString());
+                            "The description of a todo cannot be empty");
+                }
+                t = new TodoTask(msg.substring("todo".length() + 1));
+                break;
+
+            case "deadline":
+                String[] infoDeadline = splitString(msg);
+                t = new DeadlineTask(infoDeadline[0], infoDeadline[1]);
+                break;
+
+            case "event":
+                String[] infoEvent = splitString(msg);
+                t = new EventTask(infoEvent[0], infoEvent[1]);
+                break;
+
+            default:
+                throw new IllegalInstructionException(
+                        "Sorry! I don't know what that means.");
         }
+        textList.add(t);
+        System.out.println("Got it. I've added this task:");
+        System.out.println("\t" + t);
+        System.out.println("Now you have " + textList.size() + " tasks in the list.");
     }
 
     /**
@@ -72,23 +68,33 @@ public class Duke {
         String msg = sc.nextLine();
         while (!msg.equals(EXIT)) {
             String command = msg.split("\\s+")[0];
-            switch(command) {
-                case "list":
-                    System.out.println("Here are the tasks in your list:");
-                    textList.print();
-                    break;
+            try {
+                switch(command) {
+                    case "list":
+                        System.out.println("Here are the tasks in your list:");
+                        textList.print();
+                        break;
 
-                case "done":
-                    int index = Integer.parseInt(msg.split("\\s+")[1]);
-                    textList.done(index);
-                    System.out.println("Nice! I've marked this task as done:");
-                    System.out.println(textList.get(index));
-                    break;
+                    case "done":
+                        if (msg.split("\\s+").length <= 1) {
+                            throw new IllegalInstructionException("No value given to mark as done.");
+                        }
+                        int index = Integer.parseInt(msg.split("\\s+")[1]);
+                        textList.done(index);
+                        System.out.println("Nice! I've marked this task as done:");
+                        System.out.println(textList.get(index));
+                        break;
 
-                default: // todo, deadline, event
-                    handleAddingTasks(msg);
+                    default: // todo, deadline, event
+                        handleAddingTasks(msg);
+                }
+            } catch (IllegalInstructionException e) {
+                System.out.println(e);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println(e);
+            } finally {
+                msg = sc.nextLine();
             }
-            msg = sc.nextLine();
         }
         System.out.println("Bye. Hope to see you again soon!");
         sc.close();

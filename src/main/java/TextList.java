@@ -37,7 +37,10 @@ public class TextList {
      * one-indexed list.
      * @param i     The element to be returned.
      */
-    public String get(int i) {
+    public String get(int i) throws IndexOutOfBoundsException {
+        if (i < 0 || i > list.size()) {
+            throw new IndexOutOfBoundsException("Given value is out-of-bounds of the list!");
+        }
         return list.get(i - 1).toString();
     }
 
