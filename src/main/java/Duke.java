@@ -52,12 +52,20 @@ public class Duke {
 
             case "deadline":
                 String[] infoDeadline = splitString(msg);
-                t = new DeadlineTask(infoDeadline[0], infoDeadline[1]);
+                if (DateTime.isValidDateFormat(infoDeadline[1])) {
+                    t = new DeadlineTask(infoDeadline[0], new DateTime(infoDeadline[1]));
+                } else {
+                    t = new DeadlineTask(infoDeadline[0], infoDeadline[1]);
+                }
                 break;
 
             case "event":
                 String[] infoEvent = splitString(msg);
-                t = new EventTask(infoEvent[0], infoEvent[1]);
+                if (DateTime.isValidDateFormat(infoEvent[1])) {
+                    t = new EventTask(infoEvent[0], new DateTime(infoEvent[1]));
+                } else {
+                    t = new EventTask(infoEvent[0], infoEvent[1]);
+                }
                 break;
 
             default:

@@ -1,5 +1,6 @@
 public class DeadlineTask extends Task {
     protected String by;
+    protected DateTime date;
 
     public DeadlineTask(String description) {
         super(description);
@@ -9,6 +10,12 @@ public class DeadlineTask extends Task {
     public DeadlineTask(String description, String date) {
         super(description);
         this.by = date;
+    }
+
+    public DeadlineTask(String description, DateTime date) {
+        super(description);
+        this.date = date;
+        this.by = date.asDateTime();
     }
 
     /**
