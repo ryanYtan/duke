@@ -12,7 +12,7 @@ public class Task {
      * or not done respectively.
      */
     public String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+        return (isDone ? "\u2713" : "\u2718"); // return tick or X symbols
         //return (isDone ? "y" : "n"); // uses y/n as powershell has difficulty
                                        // displaying unicode
     }
@@ -25,9 +25,14 @@ public class Task {
     }
 
     /**
-     * Returns the string form of this object.
+     * Returns this object as a string to save into a File.
+     * @return formatted string
      */
+    public String formatAsData() {
+        return String.format("%s | %s", getStatusIcon(), description);
+    }
+
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        return String.format("[%s] %s", getStatusIcon(), description);
     }
 }

@@ -1,8 +1,13 @@
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.File;
+import java.io.IOException;
 
 public class TextList {
     private ArrayList<Task> list;
     private static final int MAX_ITEMS = 100;
+    private static final String PATH = "./data/";
+    private static final String FILE_NAME = "duke.txt";
 
     public TextList() {
         list = new ArrayList<Task>(MAX_ITEMS);
@@ -21,6 +26,7 @@ public class TextList {
      */
     public void add(Task t) {
         list.add(t);
+        writeToFile();
     }
 
     /**
@@ -30,6 +36,7 @@ public class TextList {
      */
     public void done(int i) {
         list.get(i - 1).markAsDone();
+        writeToFile();
     }
 
     /**
@@ -39,17 +46,16 @@ public class TextList {
      */
     public String get(int i) throws IndexOutOfBoundsException {
         if (i <= 0 || i > list.size()) {
-            throw new IndexOutOfBoundsException("Given value is out-of-bounds of the list!"
-                    + " You have " + list.size() + " items in the list.");
+            throw new IndexOutOfBoundsException();
         }
         return list.get(i - 1).toString();
     }
 
     public Task delete(int i) throws IndexOutOfBoundsException {
         if (i <= 0 || i > list.size()) {
-            throw new IndexOutOfBoundsException("Given value is out-of-bounds of the list!"
-                    + " You have " + list.size() + " items in the list.");
+            throw new IndexOutOfBoundsException();
         }
+        writeToFile();
         return list.remove(i - 1);
     }
 
@@ -69,6 +75,33 @@ public class TextList {
                 System.out.println(i + ". " + t.toString());
                 i++;
             }
+        }
+    }
+
+    public String toString() {
+        if (list.isEmpty()) {
+            return "List is empty!";
+        } else {
+            StringBuilder ret = new StringBuilder();
+            int i = 1;
+            for (Task t : list) {
+                ret.append(t.formatAsData() + "\n");
+                i++;
+            }
+            return ret.toString();
+        }
+    }
+
+    public void writeToFile() {
+        FileWriter fw;
+        try {
+            File dirName = new File(PATH);
+            if (!dirName.exists()) dirName.mkdirs();
+            fw = new FileWriter(PATH + "/" + FILE_NAME);
+            fw.write(this.toString());
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

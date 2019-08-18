@@ -16,11 +16,17 @@ public class Duke {
         }
 
         if (!slashExists) {
-            throw new IllegalInstructionException("Deadline or Event commands require \"/by\" or \"/at\" within the command");
+            throw new IllegalInstructionException("Certain commands require specific syntax, "
+                    + "please consult the user manual for more information.");
+
         } else if (i == arr.length - 1) { // nothing after /at or /by
-            throw new IllegalInstructionException("No timing given for " + arr[0] + " command.");
+            throw new IllegalInstructionException(
+                    (String.format("No timing given for %s command", arr[0])));
+
         } else if (i == 1) { // nothing between command, or /at or /by
-            throw new IllegalInstructionException("No description given for " + arr[0] + " command.");
+            throw new IllegalInstructionException(
+                    String.format("No description given for %s command", arr[0]));
+
         } else {
             StringBuilder taskDescription = new StringBuilder();
             StringBuilder dateTime = new StringBuilder();
@@ -28,12 +34,11 @@ public class Duke {
                 taskDescription.append(arr[j] + " ");
             for (int j = i + 1; j < arr.length; j++)
                 dateTime.append(arr[j] + " ");
-            String[] ret = {taskDescription.toString().trim(), dateTime.toString().trim()};
-            return ret;
+            return new String[]{taskDescription.toString().trim(), dateTime.toString().trim()};
         }
     }
 
-    private static void handleAddingTasks(String msg) throws IllegalInstructionException {
+    private static String handleAddingTasks(String msg) throws IllegalInstructionException {
         Task t;
         String command = msg.split("\\s+")[0];
         switch (command) {
@@ -56,13 +61,29 @@ public class Duke {
                 break;
 
             default:
-                throw new IllegalInstructionException(
-                        "Sorry! I don't know what that means.");
+                throw new IllegalInstructionException("Sorry! I don't know what that means.");
         }
         textList.add(t);
-        System.out.println("Got it. I've added this task:");
-        System.out.println("\t" + t);
-        System.out.println("Now you have " + textList.size() + " tasks in the list.");
+        return t.toString();
+    }
+
+    private static String handleDelete(String msg) throws IllegalInstructionException {
+        if (msg.split("\\s+").length <= 1) {
+            throw new IllegalInstructionException("No value given to delete.");
+        }
+        int index = Integer.parseInt(msg.split("\\s+")[1]);
+        String deleted = textList.get(index);
+        textList.delete(index);
+        return deleted;
+    }
+
+    private static String handleDone(String msg) throws IllegalInstructionException {
+        if (msg.split("\\s+").length <= 1) {
+            throw new IllegalInstructionException("No value given to mark as done.");
+        }
+        int index = Integer.parseInt(msg.split("\\s+")[1]);
+        textList.done(index);
+        return textList.get(index);
     }
 
     /**
@@ -76,41 +97,39 @@ public class Duke {
         while (!msg.equals(EXIT)) {
             String command = msg.split("\\s+")[0];
             try {
-                switch(command) {
+                switch (command) {
                     case "list":
                         System.out.println("Here are the tasks in your list:");
                         textList.print();
                         break;
 
                     case "done":
-                        if (msg.split("\\s+").length <= 1) {
-                            throw new IllegalInstructionException("No value given to mark as done.");
-                        }
-                        int index = Integer.parseInt(msg.split("\\s+")[1]);
-                        textList.done(index);
-                        System.out.println("Nice! I've marked this task as done:");
-                        System.out.println(textList.get(index));
+                        String finished = handleDone(msg);
+                        System.out.println(String.format("Nice! I've marked this task as done:",
+                                finished));
                         break;
                     
                     case "delete":
-                        if (msg.split("\\s+").length <= 1) {
-                            throw new IllegalInstructionException("No value given to delete.");
-                        }
-                        index = Integer.parseInt(msg.split("\\s+")[1]);
-                        String deleted = textList.get(index);
-                        textList.delete(index);
-                        System.out.println("Noted. I've removed this task");
-                        System.out.println(deleted);
-                        System.out.println("Now you have " + textList.size() + " tasks in the list.");
+                        String deleted = handleDelete(msg);
+                        System.out.println("Noted. I've removed this task:\n"
+                                + "\t" + deleted + "\n"
+                                + String.format("Now you have %d tasks in the list.",
+                                        textList.size()));
                         break;
 
                     default: // todo, deadline, event
-                        handleAddingTasks(msg);
+                        String added = handleAddingTasks(msg);
+                        System.out.println("Got it. I've added this task:\n"
+                                + "\t" + added + "\n"
+                                + String.format("Now you have %d tasks in the list",
+                                        textList.size()));
                 }
             } catch (IllegalInstructionException e) {
                 System.out.println(e);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println(e);
+                System.out.println("The value specified is out-of-bounds of the list. "
+                        + String.format("You currently have %d task(s) in the list.",
+                        textList.size()));
             } finally {
                 msg = sc.nextLine();
             }

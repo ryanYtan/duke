@@ -4,9 +4,17 @@ public class TodoTask extends Task {
     }
 
     /**
+     * Returns this object as a string to save into a File.
+     * @return formatted string
+     */
+    public String formatAsData() {
+        return String.format("T | %s | %s", getStatusIcon(), description);
+    }
+
+    /**
      * Returns the string form of this object.
      */
     public String toString() {
-        return "[T]" + "[" + getStatusIcon() + "] " + description;
-    }
+        return String.format("[T][%s] %s", getStatusIcon(), description);
+   }
 }
