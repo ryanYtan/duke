@@ -79,7 +79,7 @@ public class TaskList {
     public void print() {
         int i = 1;
         for (Task t : list) {
-            System.out.println(String.format("%d. %s", i, t));
+            System.out.format("%d. %s", i, t);
             i++;
         }
     }
@@ -87,19 +87,16 @@ public class TaskList {
     /**
      * Returns the string representation of this Task list.
      * 
-     * @return the string representation of this Task list.
+     * @return the string representation of this Task list
      */
+    @Override
     public String toString() {
-        if (list.isEmpty()) {
-            return "";
-        } else {
-            StringBuilder ret = new StringBuilder();
-            int i = 1;
-            for (Task t : list) {
-                ret.append(String.format("%d. %s\n", i, t));
-                i++;
-            }
-            return ret.toString();
+        StringBuilder ret = new StringBuilder("");
+        int i = 1;
+        for (Task t : list) {
+            ret.append(String.format("%d. %s\n", i, t));
+            i++;
         }
+        return ret.toString();
     }
 }
