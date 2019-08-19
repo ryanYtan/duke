@@ -8,17 +8,13 @@ public class DateTime {
             "The expected format is [dd/mm/yyyy hhmm], where \"hhmm\" is in 24-hrs";
 
     /**
-     * Creates a dateTime object with the specified dateTime string.
-     * The expected format is:
-     * 
-     * "dd/mm/yyyy hhmm"
-     * 
-     * where hhmm is in 24hr time.
+     * Private constructor.
+     * Constructs a dateTime object with the specified dateTime string.
      * 
      * @param dateTime
      * @throws IllegalDateException if dateTime is not in the expected format
      */
-    public DateTime(String dateTime) throws IllegalDateException {
+    private DateTime(String dateTime) throws IllegalDateException {
         try {
             String[] separated = dateTime.split("\\s+");
 
@@ -37,6 +33,20 @@ public class DateTime {
     }
 
     /**
+     * Factory Method. Use this to construct this object. Returns a DateTime object with the
+     * specified DateTime string. The expected format is:
+     * "dd/mm/yyyy hhmm" where hhmm is in 24hr time.
+     * 
+     * @param dateTime String in format [dd/mm/yyyy hhmm]
+     * @return a new DateTime object with the specified dateTime
+     * @throws IllegalDateException if dateTime is not in the expected format
+     */
+    public static DateTime of(String dateTime) throws IllegalDateException {
+
+        return new DateTime(dateTime);
+    }
+
+    /**
      * Allowed formats:
      *     d/m/yyyy
      *     dd/m/yyyy
@@ -47,14 +57,16 @@ public class DateTime {
     private static boolean isValidDate(String ddmmyyyy) {
         try {
             String[] el = ddmmyyyy.split("[/]");
-            if (el.length != 3 || el[0].length() > 2 || el[1].length() > 2 || el[2].length() != 4)
+            if (el.length != 3 || el[0].length() > 2 || el[1].length() > 2 || el[2].length() != 4) {
                 return false;
+            }
             int dd = Integer.parseInt(el[0]);
             int mm = Integer.parseInt(el[1]);
             int yyyy = Integer.parseInt(el[2]);
             int[] days = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-            if (!(1 <= mm && mm <= 12 && 1 <= dd && dd <= days[mm - 1]))
+            if (!(1 <= mm && mm <= 12 && 1 <= dd && dd <= days[mm - 1])) {
                 return false;
+            }
             if (!isLeapYear(yyyy) && mm == 2 && dd == 29) {
                 return false;
             }
