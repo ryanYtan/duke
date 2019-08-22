@@ -23,9 +23,7 @@ public class TaskFactory {
      * @return
      * @throws DukeException
      */
-    public static Task createTaskFromFormattedString(String line)
+    public static Task createTaskFromFormattedString(String formattedString)
             throws DukeException {
-        String[] a = line.split("\\s+");
-        String desc = a[a.length - 1];
     }
 }

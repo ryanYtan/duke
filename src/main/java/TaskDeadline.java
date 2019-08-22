@@ -14,6 +14,7 @@ public class TaskDeadline extends Task {
         this.type = "D";
     }
 
+
     /**
      * Factory method. Use this to construct this object. Returns a
      * TaskDeadline object with the specified description and time.
@@ -29,6 +30,26 @@ public class TaskDeadline extends Task {
         } catch (IllegalDateException e) {
             // 'by' processed as simple String
             return new TaskDeadline(description, by);
+        }
+    }
+
+    /**
+     * Factory method. Use this to construct this object.
+     * Returns a TaskDeadline object from its string form.
+     * 
+     * @param this object's string form
+     * @return a new TaskDeadline object
+     */
+    public static TaskDeadline ofFormattedForm(String formattedForm)
+            throws DukeException {
+        String regex = "\\[[D]\\]\\[[\\p{L}]\\]\\s([^\\s]*)\\s\\(by:\\s([^\\s)]*)\\)";
+        if (!regex.matches(formattedForm)) {
+            throw new DukeException("Given string is not in the correct format");
+        } else {
+            String description = formattedForm.split("\\s+")[1];
+            String by = formattedForm.substring(
+                    formattedForm.indexOf("by:") + 4, formattedForm.length() - 1);
+            return TaskDeadline.of(description, by);
         }
     }
 

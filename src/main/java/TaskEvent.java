@@ -31,6 +31,26 @@ public class TaskEvent extends Task {
     }
 
     /**
+     * Factory method. Use this to construct this object.
+     * Returns a TaskEvent object from its string form.
+     * 
+     * @param this object's string form
+     * @return a new TaskEvent object
+     */
+    public static TaskEvent ofFormattedForm(String formattedForm)
+            throws DukeException {
+        String regex = "\\[[E]\\]\\[[\\p{L}]\\]\\s([^\\s]*)\\s\\(at:\\s([^\\s)]*)\\)";
+        if (!regex.matches(formattedForm)) {
+            throw new DukeException("Given string is not in the correct format");
+        } else {
+            String description = formattedForm.split("\\s+")[1];
+            String at = formattedForm.substring(
+                    formattedForm.indexOf("at:") + 4, formattedForm.length() - 1);
+            return TaskEvent.of(description, at);
+        }
+    }
+
+    /**
      * Returns the string representation of this Task.
      * 
      * @return the string representation of this Task
