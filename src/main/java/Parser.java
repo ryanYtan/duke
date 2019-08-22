@@ -21,7 +21,7 @@ public class Parser {
                 return TaskFactory.createTaskWithDate()
 
             case "done":
-                return null
+                return null;
 
             case "bye":
 

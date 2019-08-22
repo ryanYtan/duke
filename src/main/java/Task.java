@@ -20,7 +20,7 @@ public class Task {
      * 
      * @param description of the task
      */
-    public Task(String description) {
+    protected Task(String description) {
         this.description = description;
         this.isDone = false;
         this.type = "";
@@ -32,7 +32,7 @@ public class Task {
      * 
      * @return tick or cross depending on isDone
      */
-    private String getStatusIcon() {
+    protected String getStatusIcon() {
         return isDone ? "\u2713" : "\u2718";
     }
 

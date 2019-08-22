@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Objects;
+import java.io.IOException;
 
 public class TaskList {
     /**
@@ -17,6 +18,15 @@ public class TaskList {
      */
     public TaskList() {
         list = new ArrayList<Task>(MAX_ITEMS);
+    }
+
+    public TaskList(ArrayList<String> list)
+            throws IOException, DukeException {
+        try {
+
+        } catch (IOException e) {
+            throw new DukeException("cannot load file.");
+        }
     }
 
     /**
