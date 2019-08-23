@@ -121,7 +121,6 @@ public class TaskList {
         for (Task t : list) {
             ret.add(t.toFileFormattedString());
         }
-
         return ret;
     }
 

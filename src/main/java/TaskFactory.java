@@ -1,27 +1,43 @@
-import java.util.Arrays;
-
 public class TaskFactory {
 
     public static Task createTask(String command)
-            throws IllegalArgumentException {
-        String[] el = command.split("\\s+");
+            throws IllegalInstructionException {
+        try {
+            String[] el = command.split("\\s+");
 
-        switch (el[0]) {
-        case "todo":
-            return TaskTodo.of(command.substring("todo".length()).trim());
+            switch (el[0]) {
+            case "todo":
+                return TaskTodo.of(command.substring("todo".length()).trim());
 
-        case "deadline":
-            String[] deadline = command.split("/by");
-            return TaskDeadline.of(deadline[0].substring("deadline".length()).trim(),
-                    deadline[1].trim());
+            case "deadline":
+                String[] deadline = command.split("/by");
+                String by;
+                try {
+                    by = DateTime.of(deadline[1].trim()).toString();
+                } catch (IllegalDateException e) {
+                    System.out.println(e);
+                    System.out.println("Using token as string...");
+                    by = deadline[1].trim();
+                }
+                return TaskDeadline.of(deadline[0].substring("deadline".length()).trim(), by);
 
-        case "event":
-            String[] event = command.split("/at");
-            return TaskEvent.of(event[0].substring("event".length()).trim(),
-                    event[1].trim());
+            case "event":
+                String[] event = command.split("/at");
+                String at;
+                try {
+                    at = DateTime.of(event[1].trim()).toString();
+                } catch (IllegalDateException e) {
+                    System.out.println(e);
+                    System.out.println("Using token as string...");
+                    at = event[1].trim();
+                }
+                return TaskEvent.of(event[0].substring("event".length()).trim(), at);
 
-        default:
-            throw new IllegalArgumentException("Invalid syntax. Please consult user manual.");
+            default:
+                throw new IllegalInstructionException("Invalid syntax. Please consult user manual.");
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalInstructionException("Invalid syntax! Did you miss a keyword?");
         }
     }
 

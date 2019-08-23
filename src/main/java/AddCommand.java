@@ -18,6 +18,8 @@ public class AddCommand extends Command {
             );
         } catch (IOException e) {
             throw new DukeException("Saving to file failed.");
+        } catch (IllegalInstructionException e) {
+            throw new DukeException("Invalid syntax! Did you forget a keyword in there?");
         }
     }
 }

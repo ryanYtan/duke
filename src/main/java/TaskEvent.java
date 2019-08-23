@@ -14,6 +14,13 @@ public class TaskEvent extends Task {
         this.type = "E";
     }
 
+    private TaskEvent(String description, String at, String done) {
+        super(description);
+        this.at = at;
+        this.type = "E";
+        this.isDone = done.equals("Y") ? true : false;
+    }
+
     /**
      * Factory method. Use this to construct this object. Returns an TaskEvent object
      * with the specified description and time.
@@ -43,10 +50,9 @@ public class TaskEvent extends Task {
         if (!formattedForm.startsWith("E")) {
             throw new DukeException("Given string is not in the correct format");
         } else {
-            String description = formattedForm.split("\\s+")[1];
-            String at = formattedForm.substring(
-                    formattedForm.indexOf("at:") + 4, formattedForm.length() - 1);
-            return TaskEvent.of(description, at);
+            // FORMAT STRING T | YN | ASD | AT
+            String[] el = formattedForm.split("\\s+\\|\\s+");
+            return new TaskEvent(el[2].trim(), el[3].trim(), el[1].trim());
         }
     }
 
@@ -56,7 +62,7 @@ public class TaskEvent extends Task {
      * @return the string representation of this Task suitable for writing to file
      */
     public String toFileFormattedString() {
-        return String.format("%s | %s | %s | %s)",
+        return String.format("%s | %s | %s | %s",
                 type, getStatusIcon().equals("✓") ? "Y" : "N" , description, at);
     } 
 

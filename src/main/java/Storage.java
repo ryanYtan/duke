@@ -22,6 +22,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes the contents of the given List into a file.
+     * 
+     * @param list the list to be written
+     * @throws IOException
+     */
     public void writeToFile(ArrayList<String> list)
             throws IOException {
         FileWriter fw;

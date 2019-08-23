@@ -87,6 +87,17 @@ public class Ui {
     }
 
     /**
+     * Prints success message if loading from storage succeeds.
+     */
+    public void showLoadingSuccess() {
+        print(
+            new String[]{},
+            new String[]{},
+            "Saved tasks successfully loaded."
+        );
+    }
+
+    /**
      * Prints varargs number of Strings with the format:
      * 
      * --BORDER--

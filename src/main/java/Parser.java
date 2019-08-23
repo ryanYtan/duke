@@ -28,6 +28,14 @@ public class Parser {
             } catch (NumberFormatException e) {
                 throw new IllegalInstructionException("Please enter a number after \"done\"!");
             }
+        
+        case "delete":
+            try {
+                int index = Integer.parseInt(strings[1]);
+                return new DeleteCommand(command, index);
+            } catch (NumberFormatException e) {
+                throw new IllegalInstructionException("Please enter a number after \"delete\"!");
+            }
 
         case "bye":
             return new AddCommand(command);

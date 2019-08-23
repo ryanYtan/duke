@@ -42,7 +42,6 @@ public class DateTime {
      * @throws IllegalDateException if dateTime is not in the expected format
      */
     public static DateTime of(String dateTime) throws IllegalDateException {
-
         return new DateTime(dateTime);
     }
 

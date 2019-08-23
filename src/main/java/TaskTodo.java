@@ -4,6 +4,12 @@ public class TaskTodo extends Task {
         this.type = "T";
     }
 
+    private TaskTodo(String description, String done) {
+        super(description);
+        this.type = "T";
+        this.isDone = done.equals("Y") ? true : false;
+    }
+
     /**
      * Factory method. Use this to construct this object.
      * Returns a TaskTodo object with the specified description.
@@ -24,12 +30,12 @@ public class TaskTodo extends Task {
      */
     public static TaskTodo ofFormattedForm(String formattedForm)
             throws DukeException {
-                System.out.println(formattedForm);
         if (!formattedForm.startsWith("T")) {
             throw new DukeException("Given string is not in the correct format");
         } else {
-            String description = formattedForm.substring("[a][a]".length()).trim();
-            return new TaskTodo(description);
+            // FORMAT STRING T | YN | ASD
+            String[] el = formattedForm.split("\\s+\\|\\s+");
+            return new TaskTodo(el[2].trim(), el[1].trim());
         }
     }
 
@@ -39,7 +45,7 @@ public class TaskTodo extends Task {
      * @return the string representation of this Task suitable for writing to file
      */
     public String toFileFormattedString() {
-        return String.format("%s | %s | %s)",
+        return String.format("%s | %s | %s",
                 type, getStatusIcon().equals("✓") ? "Y" : "N" , description);
     } 
 }

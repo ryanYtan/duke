@@ -14,6 +14,13 @@ public class TaskDeadline extends Task {
         this.type = "D";
     }
 
+    private TaskDeadline(String description, String by, String done) {
+        super(description);
+        this.by = by;
+        this.type = "D";
+        this.isDone = done.equals("Y") ? true : false;
+    }
+
 
     /**
      * Factory method. Use this to construct this object. Returns a
@@ -28,7 +35,7 @@ public class TaskDeadline extends Task {
             String dateTime = DateTime.of(by).toString();
             return new TaskDeadline(description, dateTime);
         } catch (IllegalDateException e) {
-            // 'by' processed as simple String
+            // 'by' processed as normal string
             return new TaskDeadline(description, by);
         }
     }
@@ -45,11 +52,9 @@ public class TaskDeadline extends Task {
         if (!formattedForm.startsWith("D")) {
             throw new DukeException("Given string is not in the correct format");
         } else {
-            String description = formattedForm.split("\\s+")[1];
-            String by = formattedForm.substring(
-                    formattedForm.indexOf("by:") + 4,
-                    formattedForm.length() - 1);
-            return TaskDeadline.of(description, by);
+            // FORMAT STRING T | YN | ASD | BY
+            String[] el = formattedForm.split("\\s+\\|\\s+");
+            return new TaskDeadline(el[2].trim(), el[3].trim(), el[1].trim());
         }
     }
 
@@ -59,7 +64,7 @@ public class TaskDeadline extends Task {
      * @return the string representation of this Task suitable for writing to file
      */
     public String toFileFormattedString() {
-        return String.format("%s | %s | %s | %s)",
+        return String.format("%s | %s | %s | %s",
                 type, getStatusIcon().equals("✓") ? "Y" : "N" , description, by);
     } 
 
