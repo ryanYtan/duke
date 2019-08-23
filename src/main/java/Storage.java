@@ -22,11 +22,11 @@ public class Storage {
         }
     }
 
-    public void writeToFile(ArrayList<Task> list, String fileName)
+    public void writeToFile(ArrayList<String> list)
             throws IOException {
-        FileWriter fw = new FileWriter(new File(fileName));
-        for (Task t : list) {
-            fw.write(t.toString() + "\n");
+        FileWriter fw = new FileWriter(new File(filePath));
+        for (String s : list) {
+            fw.write(s + "\n");
         }
         fw.close();
     }

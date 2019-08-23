@@ -20,20 +20,19 @@ public class Duke {
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                ui.showLine();
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
+                System.out.println(e);
+            } catch (IllegalInstructionException e) {
+                System.out.println(e);
             }
         }
 
     }
 
     public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+        new Duke("./data/duke.txt").run();
     }
 }

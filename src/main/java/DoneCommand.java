@@ -1,8 +1,24 @@
 public class DoneCommand extends Command {
-    public DoneCommand(String command) {
+    private int index;
+
+    public DoneCommand(String command, int index) {
         super(command);
+        this.index = index;
     }
 
-    public void execute(TaskList t, Ui ui, Storage storage) {
+    public void execute(TaskList t, Ui ui, Storage storage)
+            throws DukeException {
+        try {
+            t.done(index);
+            ui.print(
+                new String[]{"Nice! I've marked this task as done:"},
+                new String[]{},
+                t.get(index)
+            );
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(
+                String.format("That task does not exist! You have %d tasks in the list.", t.size())
+            );
+        }
     }
 }

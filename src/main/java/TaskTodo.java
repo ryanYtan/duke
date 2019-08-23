@@ -24,11 +24,13 @@ public class TaskTodo extends Task {
      */
     public static TaskTodo ofFormattedForm(String formattedForm)
             throws DukeException {
-        String regex = "\\[[T]\\]\\[[\\p{L}]\\] ([^\\s(]*)($)";
+        String regex = "\\[[T]\\]\\[[\\u2713\\u2718]\\]\\s([^\\s(]*)($)";
+        System.out.println("\"" + formattedForm + "\"");
+        System.out.println("reg: " + regex.matches(formattedForm));
         if (!regex.matches(formattedForm)) {
             throw new DukeException("Given string is not in the correct format");
         } else {
-            String description = formattedForm.split("\\s+")[1];
+            String description = formattedForm.substring("[a][a]".length()).trim();
             return new TaskTodo(description);
         }
     }

@@ -1,5 +1,2 @@
-T | ? | a
-T | ? | b
-D | ? | this one
-E | ? | another one
-D | ? | adjsd
+[T][✘] a
+[T][✘] b

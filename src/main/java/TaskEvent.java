@@ -11,6 +11,7 @@ public class TaskEvent extends Task {
     private TaskEvent(String description, String at) {
         super(description);
         this.at = at;
+        this.type = "E";
     }
 
     /**
@@ -39,7 +40,7 @@ public class TaskEvent extends Task {
      */
     public static TaskEvent ofFormattedForm(String formattedForm)
             throws DukeException {
-        String regex = "\\[[E]\\]\\[[\\p{L}]\\]\\s([^\\s]*)\\s\\(at:\\s([^\\s)]*)\\)";
+        String regex = "\\[[E]\\]\\[[\\u2713\\u2718]\\]\\s([^\\s]*)\\s\\(at:\\s([^\\s)]*)\\)";
         if (!regex.matches(formattedForm)) {
             throw new DukeException("Given string is not in the correct format");
         } else {
@@ -57,7 +58,7 @@ public class TaskEvent extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s][%s] %s (by: %s)",
+        return String.format("[%s][%s] %s (at: %s)",
                 type, getStatusIcon(), description, at);
     }
 }

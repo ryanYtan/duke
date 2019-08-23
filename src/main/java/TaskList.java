@@ -20,12 +20,11 @@ public class TaskList {
         list = new ArrayList<Task>(MAX_ITEMS);
     }
 
-    public TaskList(ArrayList<String> list)
-            throws IOException, DukeException {
-        try {
-
-        } catch (IOException e) {
-            throw new DukeException("cannot load file.");
+    public TaskList(ArrayList<String> inputList)
+        throws DukeException {
+        this.list = new ArrayList<Task>();
+        for (String str : inputList) {
+            list.add(TaskFactory.createTaskFromFormattedString(str));
         }
     }
 
@@ -84,14 +83,31 @@ public class TaskList {
     }
 
     /**
-     * Prints this Task list to System.out.
+     * Returns an ArrayList<String> containing the formatted form of this Task list.
+     * 
+     * @return an ArrayList<String> containing the formatted form of this Task list.
      */
-    public void print() {
+    public ArrayList<String> asFormattedList() {
+        ArrayList<String> ret = new ArrayList<>();
         int i = 1;
         for (Task t : list) {
-            System.out.format("%d. %s", i, t);
+            ret.add(String.format("%d. %s", i , t));
             i++;
         }
+        return ret;
+    }
+
+    /**
+     * Returns an ArrayList<String> containing the string form of this Task list.
+     * 
+     * @return an ArrayList<String> containing the string form of this Task list.
+     */
+    public ArrayList<String> asStringList() {
+        ArrayList<String> ret = new ArrayList<>();
+        for (Task t : list) {
+            ret.add(t.toString());
+        }
+        return ret;
     }
     
     /**

@@ -33,7 +33,8 @@ public class Task {
      * @return tick or cross depending on isDone
      */
     protected String getStatusIcon() {
-        return isDone ? "\u2713" : "\u2718";
+        return isDone ? "✓" : "✘";
+        // return isDone ? "Y" : "N";
     }
 
     /**

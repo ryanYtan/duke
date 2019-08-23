@@ -42,16 +42,25 @@ public class TaskDeadline extends Task {
      */
     public static TaskDeadline ofFormattedForm(String formattedForm)
             throws DukeException {
-        String regex = "\\[[D]\\]\\[[\\p{L}]\\]\\s([^\\s]*)\\s\\(by:\\s([^\\s)]*)\\)";
+        String regex = "\\[[D]\\]\\[[\\u2713\\u2718]\\]\\s([^\\s]*)\\s\\(by:\\s([^\\s)]*)\\)";
         if (!regex.matches(formattedForm)) {
-            throw new DukeException("Given string is not in the correct format");
+            throw new DukeException("String is not in the correct format");
         } else {
             String description = formattedForm.split("\\s+")[1];
             String by = formattedForm.substring(
-                    formattedForm.indexOf("by:") + 4, formattedForm.length() - 1);
+                    formattedForm.indexOf("by:") + 4,
+                    formattedForm.length() - 1);
             return TaskDeadline.of(description, by);
         }
     }
+
+    /**
+     * Returns 
+     * @return
+     */
+    public String toFileFormattedString() {
+
+    } 
 
     /**
      * Returns the string representation of this Task.
