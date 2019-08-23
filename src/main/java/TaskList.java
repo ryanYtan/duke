@@ -109,6 +109,22 @@ public class TaskList {
         }
         return ret;
     }
+
+    /**
+     * Returns an ArrayList<String> containing the string form of this Task list to
+     * write to file.
+     * 
+     * @return an ArrayList<String> containing the string form of this Task list to write to file
+     */
+    public ArrayList<String> asFileFormattedList() {
+        ArrayList<String> ret = new ArrayList<>();
+        for (Task t : list) {
+            ret.add(t.toFileFormattedString());
+        }
+
+        return ret;
+    }
+
     
     /**
      * Returns the string representation of this Task list.

@@ -34,7 +34,6 @@ public class Task {
      */
     protected String getStatusIcon() {
         return isDone ? "✓" : "✘";
-        // return isDone ? "Y" : "N";
     }
 
     /**
@@ -43,6 +42,16 @@ public class Task {
     public void markAsDone() {
         this.isDone = true;
     }
+    
+    /**
+     * Returns the string representation of this Task, for writing to file.
+     * 
+     * @return the string representation of this Task suitable for writing to file
+     */
+    public String toFileFormattedString() {
+        return String.format("%s | %s | %s)",
+                type, getStatusIcon().equals("✓") ? "Y" : "N" , description);
+    } 
 
     /**
      * Returns the string representation of this Task.

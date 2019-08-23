@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class DoneCommand extends Command {
     private int index;
 
@@ -15,10 +17,13 @@ public class DoneCommand extends Command {
                 new String[]{},
                 t.get(index)
             );
+            storage.writeToFile(t.asFileFormattedList());
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(
                 String.format("That task does not exist! You have %d tasks in the list.", t.size())
             );
+        } catch (IOException e) {
+            throw new DukeException("Saving to file failed.");
         }
     }
 }

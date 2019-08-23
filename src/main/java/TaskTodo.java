@@ -24,14 +24,22 @@ public class TaskTodo extends Task {
      */
     public static TaskTodo ofFormattedForm(String formattedForm)
             throws DukeException {
-        String regex = "\\[[T]\\]\\[[\\u2713\\u2718]\\]\\s([^\\s(]*)($)";
-        System.out.println("\"" + formattedForm + "\"");
-        System.out.println("reg: " + regex.matches(formattedForm));
-        if (!regex.matches(formattedForm)) {
+                System.out.println(formattedForm);
+        if (!formattedForm.startsWith("T")) {
             throw new DukeException("Given string is not in the correct format");
         } else {
             String description = formattedForm.substring("[a][a]".length()).trim();
             return new TaskTodo(description);
         }
     }
+
+    /**
+     * Returns the string representation of this Task, for writing to file.
+     * 
+     * @return the string representation of this Task suitable for writing to file
+     */
+    public String toFileFormattedString() {
+        return String.format("%s | %s | %s)",
+                type, getStatusIcon().equals("✓") ? "Y" : "N" , description);
+    } 
 }

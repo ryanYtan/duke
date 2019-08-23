@@ -40,8 +40,7 @@ public class TaskEvent extends Task {
      */
     public static TaskEvent ofFormattedForm(String formattedForm)
             throws DukeException {
-        String regex = "\\[[E]\\]\\[[\\u2713\\u2718]\\]\\s([^\\s]*)\\s\\(at:\\s([^\\s)]*)\\)";
-        if (!regex.matches(formattedForm)) {
+        if (!formattedForm.startsWith("E")) {
             throw new DukeException("Given string is not in the correct format");
         } else {
             String description = formattedForm.split("\\s+")[1];
@@ -50,6 +49,16 @@ public class TaskEvent extends Task {
             return TaskEvent.of(description, at);
         }
     }
+
+    /**
+     * Returns the string representation of this Task, for writing to file.
+     * 
+     * @return the string representation of this Task suitable for writing to file
+     */
+    public String toFileFormattedString() {
+        return String.format("%s | %s | %s | %s)",
+                type, getStatusIcon().equals("✓") ? "Y" : "N" , description, at);
+    } 
 
     /**
      * Returns the string representation of this Task.

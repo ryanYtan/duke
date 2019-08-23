@@ -10,7 +10,7 @@ public class AddCommand extends Command {
         try {
             Task task = TaskFactory.createTask(command);
             t.add(task);
-            storage.writeToFile(t.asStringList());
+            storage.writeToFile(t.asFileFormattedList());
             ui.print(
                 new String[]{"Got it. I've added this task:"},
                 new String[]{String.format("Now you have %d tasks in the list", t.size())},
