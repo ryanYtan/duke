@@ -1,4 +1,11 @@
+package duke.command;
+
 import java.io.IOException;
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.task.*;
+import duke.io.Ui;
+import duke.io.Storage;
 
 public class ExitCommand extends Command {
     public ExitCommand(String command) {
@@ -10,7 +17,7 @@ public class ExitCommand extends Command {
         try {
             storage.writeToFile(t.asFileFormattedList());
             ui.print(
-                new String[]{"These are your tasks"},
+                new String[]{"Thank you for using Duke!", "These are your tasks:"},
                 new String[]{"Duke is exiting..."},
                 t.asFormattedList().toArray(new String[t.size()])
             );

@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.exception.DukeException;
+
 public class TaskTodo extends Task {
     private TaskTodo(String description) {
         super(description);

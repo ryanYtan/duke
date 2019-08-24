@@ -1,8 +1,11 @@
+package duke.io;
+
 import java.util.ArrayDeque;
 import java.util.Scanner;
 
 public class Ui {
     Scanner sc;
+
     /**
      * Separator line between user input and program output.
      */

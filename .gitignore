@@ -14,4 +14,4 @@ src/main/resources/docs/
 bin/
 
 # class files
-.class
+**.class

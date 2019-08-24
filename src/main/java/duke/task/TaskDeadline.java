@@ -1,3 +1,9 @@
+package duke.task;
+
+import duke.io.DateTime;
+import duke.exception.DukeException;
+import duke.exception.IllegalDateException;
+
 public class TaskDeadline extends Task {
     private String by;
 

@@ -1,9 +1,16 @@
-import java.io.IOException;
+package duke.command;
 
-public class DeleteCommand extends Command {
+import java.io.IOException;
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.task.*;
+import duke.io.Ui;
+import duke.io.Storage;
+
+public class DoneCommand extends Command {
     private int index;
 
-    public DeleteCommand(String command, int index) {
+    public DoneCommand(String command, int index) {
         super(command);
         this.index = index;
     }
@@ -11,11 +18,11 @@ public class DeleteCommand extends Command {
     public void execute(TaskList t, Ui ui, Storage storage)
             throws DukeException {
         try {
-            Task removed = t.remove(index);
+            t.done(index);
             ui.print(
-                new String[]{"Note. I've removed this task:"},
-                new String[]{String.format("You now have %d tasks in the list.", t.size())},
-                removed.toString()
+                new String[]{"Nice! I've marked this task as done:"},
+                new String[]{},
+                t.get(index)
             );
             storage.writeToFile(t.asFileFormattedList());
         } catch (IndexOutOfBoundsException e) {

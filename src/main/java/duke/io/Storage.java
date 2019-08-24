@@ -1,3 +1,5 @@
+package duke.io;
+
 import java.util.ArrayList;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -5,6 +7,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.stream.Stream;
+
+import duke.exception.DukeException;
 
 public class Storage {
     private String filePath;

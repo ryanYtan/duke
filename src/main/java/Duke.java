@@ -1,3 +1,11 @@
+import duke.io.Ui;
+import duke.io.Storage;
+import duke.task.TaskList;
+import duke.exception.DukeException;
+import duke.exception.IllegalInstructionException;
+import duke.io.Parser;
+import duke.command.Command;
+
 public class Duke {
     private Storage storage;
     private TaskList tasks;
@@ -7,11 +15,11 @@ public class Duke {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
-            ui.showLoadingSuccess();
             tasks = new TaskList(storage.load());
+            ui.showLoadingSuccess();
         } catch (DukeException e) {
-            ui.showLoadingError();
             tasks = new TaskList();
+            ui.showLoadingError();
         }
     }
 
@@ -25,9 +33,17 @@ public class Duke {
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
-                System.out.println(e);
+                ui.print(
+                    new String[]{},
+                    new String[]{},
+                    e.getMessage()
+                );
             } catch (IllegalInstructionException e) {
-                System.out.println(e);
+                ui.print(
+                    new String[]{},
+                    new String[]{},
+                    e.getMessage()
+                );
             }
         }
 

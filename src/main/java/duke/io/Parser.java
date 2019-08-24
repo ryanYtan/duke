@@ -1,4 +1,7 @@
-import java.util.Arrays;
+package duke.io;
+
+import duke.exception.IllegalInstructionException;
+import duke.command.*;
 
 public class Parser {
     /**
@@ -38,7 +41,7 @@ public class Parser {
             }
 
         case "bye":
-            return new AddCommand(command);
+            return new ExitCommand(command);
 
         default:
             throw new IllegalInstructionException("Sorry! I don't know what that means.");
