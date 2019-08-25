@@ -7,7 +7,7 @@ import duke.io.Storage;
 
 public abstract class Command {
     protected String command;
-    protected static final String EXIT = "bye";
+    private static final String EXIT = "bye";
 
     public Command(String command) {
         this.command = command;
@@ -17,6 +17,13 @@ public abstract class Command {
         return this.command.equals(EXIT);
     }
 
+    /**
+     * Executes the command defined by this object.
+     *
+     * @param t the TaskList object
+     * @param ui the Ui object
+     * @param storage the Storage object
+     */
     public abstract void execute(TaskList t, Ui ui, Storage storage)
             throws DukeException;
 

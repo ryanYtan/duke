@@ -15,6 +15,13 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
 
+    /**
+     * Finds the task in t, deletes it and prints the result.
+     *
+     * @param t the TaskList object
+     * @param ui the Ui object
+     * @param storage the Storage object
+     */
     public void execute(TaskList t, Ui ui, Storage storage)
             throws DukeException {
         try {

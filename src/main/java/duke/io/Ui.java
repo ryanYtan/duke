@@ -102,13 +102,12 @@ public class Ui {
 
     /**
      * Prints varargs number of Strings with the format:
-     * 
      * --BORDER--
-     * <beforeText[]>
+     * beforeText[]
      * "\t string1"
      * "\t string2"
      * etc.
-     * <afterText[]>
+     * afterText[]
      * --BORDER--
      * 
      * @param args strings to be printed
@@ -129,7 +128,6 @@ public class Ui {
 
     /**
      * Prints varargs number of Strings with the format:
-     * 
      * --BORDER--
      * "\t string1"
      * "\t string2"

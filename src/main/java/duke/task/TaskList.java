@@ -1,10 +1,9 @@
 package duke.task;
 
+import duke.exception.DukeException;
+
 import java.util.ArrayList;
 import java.util.Objects;
-
-import duke.task.TaskFactory;
-import duke.exception.DukeException;
 
 public class TaskList {
     /**
@@ -21,12 +20,18 @@ public class TaskList {
      * Constructs an empty TaskList.
      */
     public TaskList() {
-        list = new ArrayList<Task>(MAX_ITEMS);
+        list = new ArrayList<>(MAX_ITEMS);
     }
 
+    /**
+     * Constructs a new TaskList with the given string list.
+     *
+     * @param inputList ArrayList of Strings
+     * @throws DukeException if TaskList cannot be formed from the given list
+     */
     public TaskList(ArrayList<String> inputList)
         throws DukeException {
-        this.list = new ArrayList<Task>();
+        this.list = new ArrayList<>();
         for (String str : inputList) {
             list.add(TaskFactory.createTaskFromFormattedString(str));
         }
@@ -46,9 +51,8 @@ public class TaskList {
      * 
      * @param t task to be appended to this list
      */
-    public boolean add(Task t) {
+    public void add(Task t) {
         list.add(t);
-        return true;
     }
 
     /**
@@ -87,9 +91,9 @@ public class TaskList {
     }
 
     /**
-     * Returns an ArrayList<String> containing the formatted form of this Task list.
+     * Returns an String ArrayList containing the formatted form of this Task list.
      * 
-     * @return an ArrayList<String> containing the formatted form of this Task list.
+     * @return an String ArrayList containing the formatted form of this Task list.
      */
     public ArrayList<String> asFormattedList() {
         ArrayList<String> ret = new ArrayList<>();
@@ -102,9 +106,9 @@ public class TaskList {
     }
 
     /**
-     * Returns an ArrayList<String> containing the string form of this Task list.
+     * Returns an String ArrayList containing the string form of this Task list.
      * 
-     * @return an ArrayList<String> containing the string form of this Task list.
+     * @return an String ArrayList containing the string form of this Task list.
      */
     public ArrayList<String> asStringList() {
         ArrayList<String> ret = new ArrayList<>();
@@ -115,10 +119,10 @@ public class TaskList {
     }
 
     /**
-     * Returns an ArrayList<String> containing the string form of this Task list to
+     * Returns an String ArrayList containing the string form of this Task list to
      * write to file.
      * 
-     * @return an ArrayList<String> containing the string form of this Task list to write to file
+     * @return an String ArrayList containing the string form of this Task list to write to file
      */
     public ArrayList<String> asFileFormattedList() {
         ArrayList<String> ret = new ArrayList<>();

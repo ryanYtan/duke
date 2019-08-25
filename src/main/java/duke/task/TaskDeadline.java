@@ -48,7 +48,6 @@ public class TaskDeadline extends Task {
 
     /**
      * Returns a TaskDeadline object from its string form.
-     *
      * Factory method. Use this to construct this object.
      *
      * @param this object's string form

@@ -17,6 +17,12 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Returns a new String ArrayList containing data in given filePath.
+     *
+     * @return a new String ArrayList containing data in given filePath
+     * @throws DukeException if the data from file cannot be loaded
+     */
     public ArrayList<String> load()
             throws DukeException {
         try {
@@ -30,7 +36,7 @@ public class Storage {
      * Writes the contents of the given List into a file.
      * 
      * @param list the list to be written
-     * @throws IOException
+     * @throws IOException if an IOException occurs
      */
     public void writeToFile(ArrayList<String> list)
             throws IOException {
@@ -46,15 +52,16 @@ public class Storage {
     }
 
     /**
-     * Helper method to get lines from the File specified 
-     * @return
-     * @throws IOException
+     * Helper method to get lines from the File specified.
+     *
+     * @return a new String ArrayList containing the info found in filePath.
+     * @throws IOException if an IOException occurs
      */
     private ArrayList<String> readFile()
             throws IOException {
         Stream<String> stream = Files.lines(Paths.get(filePath));
         ArrayList<String> list = new ArrayList<>();
-        stream.forEach(x -> list.add(x));
+        stream.forEach(list::add);
         stream.close();
         return list;
     }

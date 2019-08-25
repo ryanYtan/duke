@@ -1,14 +1,21 @@
 package duke.io;
 
 import duke.exception.IllegalInstructionException;
-import duke.command.*;
+
+import duke.command.Command;
+import duke.command.AddCommand;
+import duke.command.DeleteCommand;
+import duke.command.DoneCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
 
 public class Parser {
     /**
      * Handles parsing of user input.
-     * @param input
+     *
+     * @param input by the user
      * @return a new Task represented by the input, null otherwise
-     * @throws IllegalInstructionException
+     * @throws IllegalInstructionException if given input is not in the expected format
      */
     public static Command parse(String input)
             throws IllegalInstructionException {

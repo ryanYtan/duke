@@ -13,6 +13,13 @@ public class AddCommand extends Command {
         super(command);
     }
 
+    /**
+     * Appends the given task to t, and prints the result.
+     *
+     * @param t the TaskList object
+     * @param ui the Ui object
+     * @param storage the Storage object
+     */
     public void execute(TaskList t, Ui ui, Storage storage)
             throws DukeException {
         try {

@@ -48,7 +48,7 @@ public class TaskEvent extends Task {
      * Factory method. Use this to construct this object.
      * Returns a TaskEvent object from its string form.
      * 
-     * @param this object's string form
+     * @param formattedForm his object's string form
      * @return a new TaskEvent object
      */
     public static TaskEvent ofFormattedForm(String formattedForm)

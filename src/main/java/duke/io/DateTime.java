@@ -15,7 +15,7 @@ public class DateTime {
      * Private constructor.
      * Constructs a dateTime object with the specified dateTime string.
      * 
-     * @param dateTime
+     * @param dateTime the string representing the date and time
      * @throws IllegalDateException if dateTime is not in the expected format
      */
     private DateTime(String dateTime) throws IllegalDateException {

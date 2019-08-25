@@ -11,8 +11,14 @@ public class ListCommand extends Command {
         super(command);
     }
 
-    public void execute(TaskList t, Ui ui, Storage storage)
-            throws DukeException {
+    /**
+     * Prints the TaskList t.
+     *
+     * @param t the TaskList object
+     * @param ui the Ui object
+     * @param storage the Storage object
+     */
+    public void execute(TaskList t, Ui ui, Storage storage) {
         ui.print(
             new String[]{"Here are the tasks in your list:"},
             new String[0],

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.23">
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\Duke.java">
+<error line="34" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 5, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\command\AddCommand.java">
+<error line="7" severity="error" message="Using the &apos;.*&apos; form of import should be avoided - duke.task.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\command\Command.java">
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\command\DeleteCommand.java">
+<error line="6" severity="error" message="Using the &apos;.*&apos; form of import should be avoided - duke.task.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\command\DoneCommand.java">
+<error line="6" severity="error" message="Using the &apos;.*&apos; form of import should be avoided - duke.task.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\command\ExitCommand.java">
+<error line="6" severity="error" message="Using the &apos;.*&apos; form of import should be avoided - duke.task.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\command\ListCommand.java">
+<error line="5" severity="error" message="Using the &apos;.*&apos; form of import should be avoided - duke.task.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\exception\DukeException.java">
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\exception\IllegalDateException.java">
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\exception\IllegalInstructionException.java">
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\io\DateTime.java">
+<error line="25" severity="error" message="&apos;if&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="90" severity="error" message="&apos;if&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\io\Parser.java">
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\io\Storage.java">
+<error line="46" severity="error" message="&apos;if&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\io\Ui.java">
+<error line="13" severity="error" message="Unicode escape(s) usage should be avoided." source="com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\task\Task.java">
+<error line="55" column="63" severity="error" message="&apos;,&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\task\TaskDeadline.java">
+<error line="74" column="63" severity="error" message="&apos;,&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\task\TaskEvent.java">
+<error line="72" column="63" severity="error" message="&apos;,&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\task\TaskFactory.java">
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\task\TaskList.java">
+<error line="102" column="47" severity="error" message="&apos;,&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\task\TaskTodo.java">
+<error line="53" column="63" severity="error" message="&apos;,&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck"/>
+</file>
+</checkstyle>

@@ -11,6 +11,11 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Returns a new Duke object using the given file path.
+     *
+     * @param filePath filePath to saved task list
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -23,7 +28,10 @@ public class Duke {
         }
     }
 
-    public void run() {
+     /**
+      * Main logic of the program.
+      */
+     private void run() {
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {
@@ -32,13 +40,7 @@ public class Duke {
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.print(
-                    new String[]{},
-                    new String[]{},
-                    e.getMessage()
-                );
-            } catch (IllegalInstructionException e) {
+            } catch (DukeException | IllegalInstructionException e) {
                 ui.print(
                     new String[]{},
                     new String[]{},
@@ -48,6 +50,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Main method.
+     *
+     * @param args arguments called with the program
+     */
     public static void main(String[] args) {
         new Duke("./data/duke.txt").run();
     }
