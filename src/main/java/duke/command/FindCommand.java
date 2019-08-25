@@ -12,6 +12,14 @@ public class FindCommand extends Command {
         super(command);
     }
 
+    /**
+     * Finds all matching tasks within t, as specified by the command represented by this object.
+     *
+     * @param t the TaskList object
+     * @param ui the Ui object
+     * @param storage the Storage object
+     * @throws DukeException if no tasks exists within t
+     */
     public void execute(TaskList t, Ui ui, Storage storage)
             throws DukeException {
         try {
