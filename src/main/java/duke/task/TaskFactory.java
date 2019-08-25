@@ -6,7 +6,13 @@ import duke.exception.DukeException;
 import duke.io.DateTime;
 
 public class TaskFactory {
-
+    /**
+     * Returns a new Task from the given user input command.
+     *
+     * @param command user input
+     * @return a new Task from the given user input command
+     * @throws IllegalInstructionException if user input is not in expected format
+     */
     public static Task createTask(String command)
             throws IllegalInstructionException {
         try {
@@ -53,9 +59,9 @@ public class TaskFactory {
      * 
      * @param formattedString task in its string form
      * @return a new task representing the formattedString
-     * @throws DukeException
+     * @throws DukeException if formattedString does not match an expected format
      */
-    public static Task createTaskFromFormattedString(String formattedString)
+    static Task createTaskFromFormattedString(String formattedString)
             throws DukeException {
         try {
             return TaskTodo.ofFormattedForm(formattedString);

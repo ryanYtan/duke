@@ -24,7 +24,7 @@ public class TaskDeadline extends Task {
         super(description);
         this.by = by;
         this.type = "D";
-        this.isDone = done.equals("Y") ? true : false;
+        this.isDone = done.equals("Y");
     }
 
 
@@ -47,13 +47,14 @@ public class TaskDeadline extends Task {
     }
 
     /**
-     * Factory method. Use this to construct this object.
      * Returns a TaskDeadline object from its string form.
-     * 
+     *
+     * Factory method. Use this to construct this object.
+     *
      * @param this object's string form
      * @return a new TaskDeadline object
      */
-    public static TaskDeadline ofFormattedForm(String formattedForm)
+    static TaskDeadline ofFormattedForm(String formattedForm)
             throws DukeException {
         if (!formattedForm.startsWith("D")) {
             throw new DukeException("Given string is not in the correct format");

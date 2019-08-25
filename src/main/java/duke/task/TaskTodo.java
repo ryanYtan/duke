@@ -11,7 +11,7 @@ public class TaskTodo extends Task {
     private TaskTodo(String description, String done) {
         super(description);
         this.type = "T";
-        this.isDone = done.equals("Y") ? true : false;
+        this.isDone = done.equals("Y");
     }
 
     /**
@@ -32,7 +32,7 @@ public class TaskTodo extends Task {
      * @param this object's string form
      * @return a new TaskTodo object
      */
-    public static TaskTodo ofFormattedForm(String formattedForm)
+    static TaskTodo ofFormattedForm(String formattedForm)
             throws DukeException {
         if (!formattedForm.startsWith("T")) {
             throw new DukeException("Given string is not in the correct format");

@@ -24,7 +24,7 @@ public class TaskEvent extends Task {
         super(description);
         this.at = at;
         this.type = "E";
-        this.isDone = done.equals("Y") ? true : false;
+        this.isDone = done.equals("Y");
     }
 
     /**

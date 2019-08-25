@@ -4,17 +4,17 @@ public class Task {
     /**
      * Description of the task.
      */
-    protected String description;
+    String description;
 
     /**
      * Boolean variable to check if the task is done, or not done.
      */
-    protected boolean isDone;
+    boolean isDone;
 
     /**
      * Type of task.
      */
-    protected String type;
+    String type;
 
 
     /**
@@ -34,14 +34,14 @@ public class Task {
      * 
      * @return tick or cross depending on isDone
      */
-    protected String getStatusIcon() {
+    String getStatusIcon() {
         return isDone ? "✓" : "✘";
     }
 
     /**
      * Marks this task as done.
      */
-    public void markAsDone() {
+    void markAsDone() {
         this.isDone = true;
     }
     
