@@ -80,6 +80,24 @@ public class TaskList {
     }
 
     /**
+     * Returns a String ArrayList containing all tasks contained in this TaskList containing
+     * the specified String.
+     *
+     * @param match the string to match to the tasks
+     * @return a String ArrayList containing matching tasks
+     */
+    public ArrayList<String> find(String match) {
+        ArrayList<String> ret = new ArrayList<>();
+        int i = 1;
+        for (Task t : list) {
+            if (t.toString().contains(match)) {
+                ret.add(String.format("%d. %s", i, t));
+            }
+        }
+        return ret;
+    }
+
+    /**
      * Removes and returns the task at the specified index in the list.
      * 
      * @param index index at which the element is to be removed
