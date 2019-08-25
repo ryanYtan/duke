@@ -1,10 +1,9 @@
 package duke.command;
 
-import duke.command.Command;
-import duke.exception.DukeException;
-import duke.task.*;
 import duke.io.Ui;
 import duke.io.Storage;
+
+import duke.task.TaskList;
 
 public class ListCommand extends Command {
     public ListCommand(String command) {

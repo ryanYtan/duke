@@ -69,7 +69,7 @@ public class TaskEvent extends Task {
      */
     public String toFileFormattedString() {
         return String.format("%s | %s | %s | %s",
-                type, getStatusIcon().equals("✓") ? "Y" : "N" , description, at);
+                type, getStatusIcon().equals("✓") ? "Y" : "N", description, at);
     } 
 
     /**

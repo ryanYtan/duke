@@ -28,10 +28,10 @@ public class Duke {
         }
     }
 
-     /**
-      * Main logic of the program.
-      */
-     private void run() {
+    /**
+     * Main logic of the program.
+     */
+    private void run() {
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {

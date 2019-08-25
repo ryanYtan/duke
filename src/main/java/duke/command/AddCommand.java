@@ -1,12 +1,14 @@
 package duke.command;
 
 import java.io.IOException;
-import duke.command.Command;
 import duke.exception.DukeException;
 import duke.exception.IllegalInstructionException;
-import duke.task.*;
 import duke.io.Ui;
 import duke.io.Storage;
+
+import duke.task.TaskFactory;
+import duke.task.Task;
+import duke.task.TaskList;
 
 public class AddCommand extends Command {
     public AddCommand(String command) {

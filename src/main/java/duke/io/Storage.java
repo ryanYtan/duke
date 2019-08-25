@@ -43,7 +43,9 @@ public class Storage {
         FileWriter fw;
         String path = filePath.substring(0, 7);
         File dir = new File(path);
-        if (!dir.exists()) dir.mkdirs();
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
         fw = new FileWriter(filePath);
         for (String s : list) {
             fw.write(s + "\n");

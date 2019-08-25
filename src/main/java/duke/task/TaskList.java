@@ -99,7 +99,7 @@ public class TaskList {
         ArrayList<String> ret = new ArrayList<>();
         int i = 1;
         for (Task t : list) {
-            ret.add(String.format("%d. %s", i , t));
+            ret.add(String.format("%d. %s", i, t));
             i++;
         }
         return ret;
@@ -140,7 +140,7 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        StringBuilder ret = new StringBuilder("");
+        StringBuilder ret = new StringBuilder();
         int i = 1;
         for (Task t : list) {
             ret.append(String.format("%d. %s\n", i, t));

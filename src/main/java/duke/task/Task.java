@@ -52,7 +52,7 @@ public class Task {
      */
     public String toFileFormattedString() {
         return String.format("%s | %s | %s)",
-                type, getStatusIcon().equals("✓") ? "Y" : "N" , description);
+                type, getStatusIcon().equals("✓") ? "Y" : "N", description);
     } 
 
     /**

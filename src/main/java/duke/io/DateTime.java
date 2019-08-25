@@ -22,8 +22,9 @@ public class DateTime {
         try {
             String[] separated = dateTime.split("\\s+");
 
-            if (separated.length != 2 || !isValidDate(separated[0]) || !isValidTime(separated[1]))
+            if (separated.length != 2 || !isValidDate(separated[0]) || !isValidTime(separated[1])) {
                 throw new IllegalDateException("Invalid date format. " + EXPECTED_FORMAT_MESSAGE);
+            }
 
             String[] el = dateTime.split("[/|\\s]");
             this.day = Integer.parseInt(el[0]);
@@ -87,13 +88,12 @@ public class DateTime {
      */
     private static boolean isValidTime(String hhmm) {
         try {
-            if (hhmm.length() != 4) return false;
+            if (hhmm.length() != 4) {
+                return false;
+            }
             int hour = Integer.parseInt(hhmm.substring(0, 2));
             int minute = Integer.parseInt(hhmm.substring(2, 4));
-            if (0 <= hour && hour <= 23 && 0 <= minute && minute <= 59) {
-                return true;
-            }
-            return false;
+            return 0 <= hour && hour <= 23 && 0 <= minute && minute <= 59;
         } catch (NumberFormatException e) {
             return false;
         }

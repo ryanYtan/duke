@@ -71,7 +71,7 @@ public class TaskDeadline extends Task {
      */
     public String toFileFormattedString() {
         return String.format("%s | %s | %s | %s",
-                type, getStatusIcon().equals("✓") ? "Y" : "N" , description, by);
+                type, getStatusIcon().equals("✓") ? "Y" : "N", description, by);
     } 
 
     /**

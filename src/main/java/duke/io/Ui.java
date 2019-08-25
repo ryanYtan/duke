@@ -4,14 +4,14 @@ import java.util.ArrayDeque;
 import java.util.Scanner;
 
 public class Ui {
-    Scanner sc;
+    private Scanner sc;
 
     /**
      * Separator line between user input and program output.
      */
     private static final String BORDER =
-            String.format("%40s", "\u2015").replace(' ', '\u2015');
-    
+            String.format("%40s", "―").replace(" ", "―");
+
     /**
      * List to track user input history. Acts as a Stack data structure.
      */
