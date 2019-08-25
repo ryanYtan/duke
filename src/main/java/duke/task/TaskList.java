@@ -21,12 +21,12 @@ public class TaskList {
      * Constructs an empty TaskList.
      */
     public TaskList() {
-        list = new ArrayList<Task>(MAX_ITEMS);
+        list = new ArrayList<>(MAX_ITEMS);
     }
 
     public TaskList(ArrayList<String> inputList)
         throws DukeException {
-        this.list = new ArrayList<Task>();
+        this.list = new ArrayList<>();
         for (String str : inputList) {
             list.add(TaskFactory.createTaskFromFormattedString(str));
         }
@@ -73,6 +73,24 @@ public class TaskList {
     public String get(int index) {
         Objects.checkIndex(index - 1, list.size());
         return list.get(index - 1).toString();
+    }
+
+    /**
+     * Returns a String ArrayList containing all tasks contained in this TaskList containing
+     * the specified String.
+     *
+     * @param match the string to match to the tasks
+     * @return a String ArrayList containing matching tasks
+     */
+    public ArrayList<String> find(String match) {
+        ArrayList<String> ret = new ArrayList<>();
+        int i = 1;
+        for (Task t : list) {
+            if (t.toString().contains(match)) {
+                ret.add(String.format("%d. %s", i, t));
+            }
+        }
+        return ret;
     }
 
     /**

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.23">
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\Duke.java">
+<error line="14" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="26" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\command\AddCommand.java">
+<error line="7" severity="error" message="Using the &apos;.*&apos; form of import should be avoided - duke.task.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+<error line="16" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\command\Command.java">
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\command\DeleteCommand.java">
+<error line="6" severity="error" message="Using the &apos;.*&apos; form of import should be avoided - duke.task.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+<error line="18" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\command\DoneCommand.java">
+<error line="5" severity="error" message="Using the &apos;.*&apos; form of import should be avoided - duke.task.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+<error line="17" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\command\ExitCommand.java">
+<error line="6" severity="error" message="Using the &apos;.*&apos; form of import should be avoided - duke.task.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+<error line="15" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\command\FindCommand.java">
+<error line="15" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\command\ListCommand.java">
+<error line="5" severity="error" message="Using the &apos;.*&apos; form of import should be avoided - duke.task.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+<error line="14" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\exception\DukeException.java">
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\exception\IllegalDateException.java">
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\exception\IllegalInstructionException.java">
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\io\DateTime.java">
+<error line="18" severity="error" message="At-clause should have a non-empty description." source="com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck"/>
+<error line="25" severity="error" message="&apos;if&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="90" severity="error" message="&apos;if&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\io\Parser.java">
+<error line="4" severity="error" message="Using the &apos;.*&apos; form of import should be avoided - duke.command.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+<error line="9" severity="error" message="At-clause should have a non-empty description." source="com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck"/>
+<error line="11" severity="error" message="At-clause should have a non-empty description." source="com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\io\Storage.java">
+<error line="20" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="33" severity="error" message="At-clause should have a non-empty description." source="com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck"/>
+<error line="40" severity="error" message="&apos;if&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="51" severity="error" message="Javadoc comment at column 0 has parse error. Details: no viable alternative at input &apos;     *&apos; while parsing JAVADOC_TAG" source="com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\io\Ui.java">
+<error line="13" severity="error" message="Unicode escape(s) usage should be avoided." source="com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck"/>
+<error line="107" severity="error" message="Javadoc comment at column 19 has parse error. Details: no viable alternative at input &apos;&lt;beforeText[&apos; while parsing HTML_ELEMENT" source="com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck"/>
+<error line="132" severity="error" message="Empty line should be followed by &lt;p&gt; tag on the next line." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\task\Task.java">
+<error line="55" column="63" severity="error" message="&apos;,&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\task\TaskDeadline.java">
+<error line="51" severity="error" message="Empty line should be followed by &lt;p&gt; tag on the next line." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck"/>
+<error line="75" column="63" severity="error" message="&apos;,&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\task\TaskEvent.java">
+<error line="51" column="8" severity="error" message="Unused @param tag for &apos;this&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="72" column="63" severity="error" message="&apos;,&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\task\TaskFactory.java">
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\task\TaskList.java">
+<error line="27" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="108" severity="error" message="Javadoc comment at column 28 has parse error. Missed HTML close tag &apos;String&apos;. Sometimes it means that close tag missed for one of previous tags." source="com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck"/>
+<error line="116" column="47" severity="error" message="&apos;,&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck"/>
+<error line="123" severity="error" message="Javadoc comment at column 28 has parse error. Missed HTML close tag &apos;String&apos;. Sometimes it means that close tag missed for one of previous tags." source="com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck"/>
+<error line="136" severity="error" message="Javadoc comment at column 28 has parse error. Missed HTML close tag &apos;String&apos;. Sometimes it means that close tag missed for one of previous tags." source="com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck"/>
+</file>
+<file name="C:\Users\ryanty\Desktop\code\duke\src\main\java\duke\task\TaskTodo.java">
+<error line="53" column="63" severity="error" message="&apos;,&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck"/>
+</file>
+</checkstyle>

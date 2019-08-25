@@ -40,6 +40,9 @@ public class Parser {
                 throw new IllegalInstructionException("Please enter a number after \"delete\"!");
             }
 
+        case "find":
+            return new FindCommand(input);
+
         case "bye":
             return new ExitCommand(command);
 
