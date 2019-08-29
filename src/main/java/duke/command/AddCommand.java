@@ -23,7 +23,7 @@ public class AddCommand extends Command {
      * @param storage the Storage object
      */
     public void execute(TaskList t, Ui ui, Storage storage)
-            throws DukeException {
+            throws DukeException, IndexOutOfBoundsException {
         try {
             Task task = TaskFactory.createTask(command);
             t.add(task);
@@ -35,7 +35,7 @@ public class AddCommand extends Command {
             );
         } catch (IOException e) {
             throw new DukeException("Saving to file failed.");
-        } catch (IllegalInstructionException e) {
+        } catch (IllegalInstructionException | IndexOutOfBoundsException e) {
             throw new DukeException("Invalid syntax! Did you forget a keyword in there?");
         }
     }

@@ -1,6 +1,10 @@
 package duke.io;
 
+import java.util.Map;
+import static java.util.Map.entry;
+
 import duke.exception.IllegalDateException;
+
 
 public class DateTime {
     private int day;
@@ -106,12 +110,40 @@ public class DateTime {
         return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
     }
 
+    private String getDaySuffix() {
+        if ((day % 10 == 1) && (day % 100 != 11)) {
+            return "st";
+        } else if ((day % 10 == 2) && (day % 100 != 12))
+            return "nd";
+        else if ((day % 10 == 3) && (day % 100 != 13))
+            return "rd";
+        else {
+            return "th";
+        }
+    }
+
     /**
      * Returns the string representation of this dateTime object.
      * The output format is "dd/mm/yyyy hh:mm".
      */
     public String toString() {
-        return String.format("%02d/%02d/%d %02d:%02d",
-                day, month, year, hours, minutes);
+        Map<Integer, String> monthsMap = Map.ofEntries(
+                entry(1, "January"),
+                entry(2, "February"),
+                entry(3, "March"),
+                entry(4, "April"),
+                entry(5, "May"),
+                entry(6, "June"),
+                entry(7, "July"),
+                entry(8, "August"),
+                entry(9, "September"),
+                entry(10, "October"),
+                entry(11, "November"),
+                entry(122, "December")
+        );
+
+        // return String.format("%d%s %s %d %02d:%02d ",
+        return String.format("%d%s %s %02d:%02d",
+                day, getDaySuffix(), monthsMap.get(month), hours, minutes);
     }
 }

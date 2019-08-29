@@ -33,7 +33,7 @@ public class TaskList {
         throws DukeException {
         this.list = new ArrayList<>();
         for (String str : inputList) {
-            list.add(TaskFactory.createTaskFromFormattedString(str));
+            list.add(TaskFactory.createTaskFromFileFormattedString(str));
         }
     }
 
@@ -93,6 +93,7 @@ public class TaskList {
             if (t.toString().contains(match)) {
                 ret.add(String.format("%d. %s", i, t));
             }
+            i++;
         }
         return ret;
     }

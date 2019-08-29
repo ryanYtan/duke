@@ -1,23 +1,19 @@
 package duke.task;
 
-import duke.exception.DukeException;
-
 public class TaskTodo extends Task {
     private TaskTodo(String description) {
         super(description);
         this.type = "T";
     }
 
-    private TaskTodo(String description, String done) {
-        super(description);
+    private TaskTodo(String description, boolean isDone) {
+        super(description, isDone);
         this.type = "T";
-        this.isDone = done.equals("Y");
     }
 
     /**
-     * Factory method. Use this to construct this object.
-     * Returns a TaskTodo object with the specified description.
-     * 
+     * Returns a TaskTodo object with the given description.
+     *
      * @param description of the task
      * @return a new TaskTodo object.
      */
@@ -26,30 +22,47 @@ public class TaskTodo extends Task {
     }
 
     /**
-     * Factory method. Use this to construct this object.
-     * Returns a TaskTodo object from its string form.
-     * 
-     * @param this object's string form
+     * Returns a TaskTodo object with the given description and truth condition of isDone.
+     *
+     * @param description of task
+     * @param isDone truth condition of the done status of the task
      * @return a new TaskTodo object
      */
-    static TaskTodo ofFormattedForm(String formattedForm)
-            throws DukeException {
-        if (!formattedForm.startsWith("T")) {
-            throw new DukeException("Given string is not in the correct format");
-        } else {
-            // FORMAT STRING T | YN | ASD
-            String[] el = formattedForm.split("\\s+\\|\\s+");
-            return new TaskTodo(el[2].trim(), el[1].trim());
-        }
+    public static TaskTodo of(String description, boolean isDone) {
+        return new TaskTodo(description, isDone);
     }
 
     /**
-     * Returns the string representation of this Task, for writing to file.
+     * Returns a TaskTodo object from its file-formatted-form representation.
+     * The expected format is "T | ✓✘ | description".
+     *
+     * @param fileFormattedForm of a TaskTodo object
+     * @return a new TaskTodo object
+     */
+    public static TaskTodo fromFileFormattedForm(String fileFormattedForm) {
+        String[] elements = fileFormattedForm.split("\\s+\\|\\s+");
+        String desc = elements[2];
+        boolean done = elements[1].equals(IS_DONE_FILE);
+        return TaskTodo.of(desc, done);
+    }
+
+    /**
+     * Returns the String representation of this Task, for writing to file.
      * 
-     * @return the string representation of this Task suitable for writing to file
+     * @return the String representation of this Task suitable for writing to file
      */
     public String toFileFormattedString() {
-        return String.format("%s | %s | %s",
-                type, getStatusIcon().equals("✓") ? "Y" : "N", description);
-    } 
+        String status = getStatusIcon().equals(IS_DONE) ? IS_DONE_FILE : IS_NOT_DONE_FILE;
+        return String.format("%s | %s | %s", type, status, description);
+    }
+
+    /**
+     * Returns the String representation of this Task.
+     *
+     * @return the String representation of this Task.
+     */
+    @Override
+    public String toString() {
+        return String.format("[%s][%s] %s", type, getStatusIcon(), description);
+    }
 }

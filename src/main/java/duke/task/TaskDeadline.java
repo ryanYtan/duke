@@ -1,87 +1,73 @@
 package duke.task;
 
-import duke.io.DateTime;
-import duke.exception.DukeException;
-import duke.exception.IllegalDateException;
-
 public class TaskDeadline extends Task {
     private String by;
 
-    /**
-     * Private constructor.
-     * Constructs an TaskDeadline with the specified description and time.
-     * 
-     * @param description of the task
-     * @param by the time at which the event is due
-     */
     private TaskDeadline(String description, String by) {
         super(description);
         this.by = by;
         this.type = "D";
     }
 
-    private TaskDeadline(String description, String by, String done) {
-        super(description);
-        this.by = by;
+    private TaskDeadline(String description, String by, boolean isDone) {
+        this(description, by);
         this.type = "D";
-        this.isDone = done.equals("Y");
+        this.isDone = isDone;
     }
 
-
     /**
-     * Factory method. Use this to construct this object. Returns a
-     * TaskDeadline object with the specified description and time.
-     * 
-     * @param description of the task
-     * @param by the time at which the event is due
-     * @return a new TaskDeadline object.
+     * Returns a TaskDeadline object with the given description and time.
+     *
+     * @param description of the task to be done
+     * @param by this time
+     * @return a new TaskTodo object.
      */
     public static TaskDeadline of(String description, String by) {
-        try {
-            String dateTime = DateTime.of(by).toString();
-            return new TaskDeadline(description, dateTime);
-        } catch (IllegalDateException e) {
-            // 'by' processed as normal string
-            return new TaskDeadline(description, by);
-        }
+        return new TaskDeadline(description, by);
     }
 
     /**
-     * Returns a TaskDeadline object from its string form.
-     * Factory method. Use this to construct this object.
      *
-     * @param this object's string form
+     * @param description of task
+     * @param isDone truth condition of the done status of the task
+     * @return a new TaskTodo object
+     */
+    public static TaskDeadline of(String description, String by, boolean isDone) {
+        return new TaskDeadline(description, by, isDone);
+    }
+
+    /**
+     * Returns a TaskDeadline object from its file-formatted-form representation.
+     * The expected format is "D | ✓✘ | description | by"
+     *
+     * @param fileFormattedForm of a TaskDeadline object
      * @return a new TaskDeadline object
      */
-    static TaskDeadline ofFormattedForm(String formattedForm)
-            throws DukeException {
-        if (!formattedForm.startsWith("D")) {
-            throw new DukeException("Given string is not in the correct format");
-        } else {
-            // FORMAT STRING T | YN | ASD | BY
-            String[] el = formattedForm.split("\\s+\\|\\s+");
-            return new TaskDeadline(el[2].trim(), el[3].trim(), el[1].trim());
-        }
+    public static TaskDeadline fromFileFormattedForm(String fileFormattedForm) {
+        String[] elements = fileFormattedForm.split("\\s+\\|\\s+");
+        String desc = elements[2];
+        String by = elements[3];
+        boolean done = elements[1].equals(IS_DONE_FILE);
+        return TaskDeadline.of(desc, by, done);
     }
 
     /**
-     * Returns the string representation of this Task, for writing to file.
+     * Returns the String representation of this Task, for writing to file.
      * 
-     * @return the string representation of this Task suitable for writing to file
+     * @return the String representation of this Task suitable for writing to file
      */
     public String toFileFormattedString() {
-        return String.format("%s | %s | %s | %s",
-                type, getStatusIcon().equals("✓") ? "Y" : "N", description, by);
-    } 
+        String status = getStatusIcon().equals(IS_DONE) ? IS_DONE_FILE : IS_NOT_DONE_FILE;
+        return String.format("%s | %s | %s | %s", type, status, description, by);
+    }
 
     /**
-     * Returns the string representation of this Task.
-     * 
-     * @return the string representation of this Task
+     * Returns the String representation of this Task.
+     *
+     * @return the String representation of this Task.
      */
     @Override
     public String toString() {
-        return String.format("[%s][%s] %s (by: %s)",
-                type, getStatusIcon(), description, by);
+        return String.format("[%s][%s] %s (by: %s)", type, getStatusIcon(), description, by);
     }
 }

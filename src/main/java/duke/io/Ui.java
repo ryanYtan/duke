@@ -137,11 +137,11 @@ public class Ui {
      * @param args strings to be printed
      */
     public void print(String... args) {
-        System.out.println(BORDER);
+        System.out.println("\t" + BORDER);
         for (String s : args) {
             System.out.println("\t" + s);
         }
-        System.out.println(BORDER);
+        System.out.println("\t" + BORDER);
     }
 
 

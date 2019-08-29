@@ -11,6 +11,15 @@ import duke.command.FindCommand;
 import duke.command.ListCommand;
 
 public class Parser {
+    private static final String COMMAND_LIST = "list";
+    private static final String COMMAND_TODO = "todo";
+    private static final String COMMAND_DEADLINE = "deadline";
+    private static final String COMMAND_EVENT = "event";
+    private static final String COMMAND_DONE = "done";
+    private static final String COMMAND_DELETE = "delete";
+    private static final String COMMAND_FIND = "find";
+    private static final String COMMAND_EXIT = "bye";
+
     /**
      * Handles parsing of user input.
      *
@@ -24,39 +33,38 @@ public class Parser {
         String command = strings[0];
 
         switch (command) {
-        case "list":
+        case COMMAND_LIST:
             return new ListCommand(input);
 
-        case "todo":
-        case "deadline":
-        case "event":
+        case COMMAND_TODO:
+        case COMMAND_DEADLINE:
+        case COMMAND_EVENT:
             return new AddCommand(input);
 
-        case "done":
+        case COMMAND_DONE:
             try {
                 int index = Integer.parseInt(strings[1]);
                 return new DoneCommand(command, index);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 throw new IllegalInstructionException("Please enter a number after \"done\"!");
             }
         
-        case "delete":
+        case COMMAND_DELETE:
             try {
                 int index = Integer.parseInt(strings[1]);
                 return new DeleteCommand(command, index);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 throw new IllegalInstructionException("Please enter a number after \"delete\"!");
             }
 
-        case "find":
+        case COMMAND_FIND:
             return new FindCommand(input);
 
-        case "bye":
+        case COMMAND_EXIT:
             return new ExitCommand(command);
 
         default:
             throw new IllegalInstructionException("Sorry! I don't know what that means.");
         }
-
     }
 }

@@ -41,11 +41,7 @@ public class Duke {
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException | IllegalInstructionException e) {
-                ui.print(
-                    new String[]{},
-                    new String[]{},
-                    e.getMessage()
-                );
+                ui.print(e.getMessage());
             }
         }
     }

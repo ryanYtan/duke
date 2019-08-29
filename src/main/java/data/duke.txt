@@ -1,7 +1,8 @@
-T | N | a
-T | N | b
-T | N | a
-T | N | helplah
-T | N | a
-T | N | a
-T | N | b
+T | 0 | a
+T | 0 | a
+T | 0 | asd 232
+T | 0 | a
+T | 0 | a
+D | 0 | asdf | 02/05/1997 19:21
+D | 0 | asdf | 2nd May 16:30
+D | 0 | asdf | 02/05/1997 1790
