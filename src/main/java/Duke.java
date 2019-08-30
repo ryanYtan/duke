@@ -1,15 +1,26 @@
 import duke.io.Ui;
 import duke.io.Storage;
+import duke.io.Parser;
+
 import duke.task.TaskList;
+
 import duke.exception.DukeException;
 import duke.exception.IllegalInstructionException;
-import duke.io.Parser;
+
 import duke.command.Command;
 
-public class Duke {
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+public class Duke extends Application {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+
+    public Duke() {
+    }
 
     /**
      * Returns a new Duke object using the given file path.
@@ -53,5 +64,13 @@ public class Duke {
      */
     public static void main(String[] args) {
         new Duke("./data/duke.txt").run();
+    }
+
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 }
