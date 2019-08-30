@@ -27,7 +27,7 @@ public class TaskEvent extends Task {
     }
 
     /**
-     * Returns a TaskEvent object with the given description and truth condition of isDone.
+     * Returns a TaskEvent object with the given description, time and truth condition of isDone.
      *
      * @param description of the task occurring
      * @param at this time

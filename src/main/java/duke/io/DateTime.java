@@ -113,11 +113,11 @@ public class DateTime {
     private String getDaySuffix() {
         if ((day % 10 == 1) && (day % 100 != 11)) {
             return "st";
-        } else if ((day % 10 == 2) && (day % 100 != 12))
+        } else if ((day % 10 == 2) && (day % 100 != 12)) {
             return "nd";
-        else if ((day % 10 == 3) && (day % 100 != 13))
+        } else if ((day % 10 == 3) && (day % 100 != 13)) {
             return "rd";
-        else {
+        } else {
             return "th";
         }
     }

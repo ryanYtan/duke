@@ -27,6 +27,7 @@ public class TaskDeadline extends Task {
     }
 
     /**
+     * Returns a TaskDeadline object with the given description, time and truth condition of isDone.
      *
      * @param description of task
      * @param isDone truth condition of the done status of the task

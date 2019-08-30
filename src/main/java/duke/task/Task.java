@@ -10,9 +10,9 @@ public abstract class Task {
     /** String representing the type of task. */
     String type;
 
-    /** String representations of isDone */
+    /** String representations of isDone. */
     protected static final String IS_DONE = "✓";
-    protected static final String IS_NOT_DONE ="✘";
+    protected static final String IS_NOT_DONE = "✘";
     protected static final String IS_DONE_FILE = "1";
     protected static final String IS_NOT_DONE_FILE = "0";
 
