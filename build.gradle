@@ -45,7 +45,3 @@ application {
     mainClassName = "Launcher"
 }
 
-// gradlew tests
-task task1 {
-    println 'hello!'
-}

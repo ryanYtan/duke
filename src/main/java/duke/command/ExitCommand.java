@@ -19,11 +19,11 @@ public class ExitCommand extends Command {
      * @param ui the Ui object
      * @param storage the Storage object
      */
-    public void execute(TaskList t, Ui ui, Storage storage)
+    public String execute(TaskList t, Ui ui, Storage storage)
             throws DukeException {
         try {
             storage.writeToFile(t.asFileFormattedList());
-            ui.print(
+            return ui.asDukeMessage(
                 new String[]{"Thank you for using Duke!", "These are your tasks:"},
                 new String[]{"Duke is exiting..."},
                 t.asFormattedList().toArray(new String[t.size()])

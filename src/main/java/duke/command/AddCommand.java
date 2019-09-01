@@ -22,13 +22,13 @@ public class AddCommand extends Command {
      * @param ui the Ui object
      * @param storage the Storage object
      */
-    public void execute(TaskList t, Ui ui, Storage storage)
+    public String execute(TaskList t, Ui ui, Storage storage)
             throws DukeException, IndexOutOfBoundsException {
         try {
             Task task = TaskFactory.createTask(command);
             t.add(task);
             storage.writeToFile(t.asFileFormattedList());
-            ui.print(
+            return ui.asDukeMessage(
                 new String[]{"Got it. I've added this task:"},
                 new String[]{String.format("Now you have %d tasks in the list", t.size())},
                 task.toString()

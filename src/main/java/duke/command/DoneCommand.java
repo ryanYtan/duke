@@ -22,16 +22,16 @@ public class DoneCommand extends Command {
      * @param ui the Ui object
      * @param storage the Storage object
      */
-    public void execute(TaskList t, Ui ui, Storage storage)
+    public String execute(TaskList t, Ui ui, Storage storage)
             throws DukeException {
         try {
             t.done(index);
-            ui.print(
+            storage.writeToFile(t.asFileFormattedList());
+            return ui.asDukeMessage(
                 new String[]{"Nice! I've marked this task as done:"},
                 new String[]{},
                 t.get(index)
             );
-            storage.writeToFile(t.asFileFormattedList());
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(
                 String.format("That task does not exist! You have %d tasks in the list.", t.size())
