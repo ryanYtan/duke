@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class TaskList {
-    /**
-     * The list of Tasks.
-     */
     private ArrayList<Task> list;
 
     /**

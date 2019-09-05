@@ -1,76 +1,20 @@
 package duke.io;
 
-import java.util.ArrayDeque;
-import java.util.Scanner;
-
+/**
+ *
+ */
 public class Ui {
-    private Scanner sc;
-
     /**
-     * Separator line between user input and program output.
-     */
-    private static final String BORDER =
-            String.format("%40s", "―").replace(" ", "―");
-
-    /**
-     * List to track user input history. Acts as a Stack data structure.
-     */
-    private ArrayDeque<String> buffer;
-
-    /**
-     * Creates a new Ui object with an empty buffer.
-     */
-    public Ui() {
-        sc = new Scanner(System.in);
-        this.buffer = new ArrayDeque<>();
-    }
-
-    /**
-     * Reads and returns a new string from stdin.
-     * 
-     * @return a new input string from stdin
-     */
-    public String readCommand() {
-        String ret = sc.nextLine();
-        buffer.push(ret);
-        return ret;
-    }
-
-    /**
-     * Get the last command input by the user.
+     * Returns a String containing the program's welcome message.
      *
-     * @return a String containing the last command input by the user
-     */
-    public String getCommand() {
-        return this.buffer.peek();
-    }
-
-    /**
-     * Helper method to flush the buffer.
-     * 
-     * @return true if the buffer is flushed
-     */
-    private boolean flushBuffer() {
-        this.buffer = new ArrayDeque<>();
-        return true;
-    }
-
-    /**
-     * Prints the current buffer to System.out.
-     */
-    public void showLine() {
-        asDukeMessage(buffer.peek());
-    }
-
-    /**
-     * Prints welcome message to System.out.
+     * @return a new String containing the program's welcome message
      */
     public String showWelcome() {
-        String logoOne =   " ____        _        ";
-        String logoTwo =   "|  _ \\ _   _| | _____ ";
+        String logoOne = " ____        _        ";
+        String logoTwo = "|  _ \\ _   _| | _____ ";
         String logoThree = "| | | | | | | |/ / _ \\";
-        String logoFour =  "| |_| | |_| |   <  __/";
-        String logoFive =  "|____/\\__,_|_|\\_\\___|\n";
+        String logoFour = "| |_| | |_| |   <  __/";
+        String logoFive = "|____/\\__,_|_|\\_\\___|\n";
 
         String greeting = "Welcome to";
         String question = "What can I do for you today?";
@@ -80,7 +24,9 @@ public class Ui {
     }
 
     /**
-     * Prints error message if loading from storage fails.
+     * Returns a String containing an error message if loading from storage succeeds.
+     *
+     * @return a new String containing an error message
      */
     public String showLoadingError() {
         return asDukeMessage(
@@ -89,7 +35,9 @@ public class Ui {
     }
 
     /**
-     * Prints success message if loading from storage succeeds.
+     * Returns a String containing a success message if loading from storage succeeds.
+     *
+     * @return a new String containing a success message
      */
     public String showLoadingSuccess() {
         return asDukeMessage(
@@ -102,6 +50,7 @@ public class Ui {
      * String is delimited with a newline character.
      *
      * @param args strings to be printed
+     * @return a String containing the elements in the param following the above rules
      */
     public String asDukeMessage(String[] beforeText, String[] afterText, String... args) {
         StringBuilder ret = new StringBuilder();
@@ -122,6 +71,7 @@ public class Ui {
      * a newline character.
      *
      * @param args strings to be printed
+     * @return a String containing the elements in the param following the above rules
      */
     public String asDukeMessage(String... args) {
         return asDukeMessage(new String[]{}, new String[]{}, args);
