@@ -22,7 +22,7 @@ public class DoneCommand extends Command {
      * @param t the TaskList object
      * @param ui the Ui object
      * @param storage the Storage object
-     * @return a String representing the response by Duke from finishing a task
+     * @return a String representing the response by duke.ui.Duke from finishing a task
      */
     public String execute(TaskList t, Ui ui, Storage storage) throws DukeException {
         try {

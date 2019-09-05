@@ -1,7 +1,7 @@
 package duke.io;
 
 /**
- * The Ui class provides some methods for I/O in the Duke program. This includes greetings,
+ * The Ui class provides some methods for I/O in the duke.ui.Duke program. This includes greetings,
  * good-byes, success and error messages and a general formatting function.
  */
 public class Ui {

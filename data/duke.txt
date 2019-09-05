@@ -7,3 +7,6 @@ T | 0 | asdf
 T | 0 | a
 T | 0 | b
 T | 0 | hello!
+T | 0 | a
+T | 0 | a
+T | 0 | b

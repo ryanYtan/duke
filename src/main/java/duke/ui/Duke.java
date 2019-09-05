@@ -1,3 +1,5 @@
+package duke.ui;
+
 import duke.io.Ui;
 import duke.io.Storage;
 import duke.io.Parser;
@@ -17,7 +19,7 @@ public class Duke {
     public String greeting;
 
     /**
-     * Returns a new Duke object using the given file path.
+     * Returns a new duke.ui.Duke object using the given file path.
      *
      * @param filePath filePath to saved task list
      */

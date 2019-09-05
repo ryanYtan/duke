@@ -24,8 +24,8 @@ public class ExitCommand extends Command {
         try {
             storage.writeToFile(t.asFileFormattedList());
             return ui.asDukeMessage(
-                new String[]{"Thank you for using Duke!", "These are your tasks:"},
-                new String[]{"Duke is exiting..."},
+                new String[]{"Thank you for using duke.ui.Duke!", "These are your tasks:"},
+                new String[]{"duke.ui.Duke is exiting..."},
                 t.asFormattedList().toArray(new String[t.size()])
             );
         } catch (IOException e) {

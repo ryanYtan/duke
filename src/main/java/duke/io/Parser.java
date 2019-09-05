@@ -11,7 +11,7 @@ import duke.command.FindCommand;
 import duke.command.ListCommand;
 
 /**
- * The Parser class handles the parsing of user input directly in the Duke program.
+ * The Parser class handles the parsing of user input directly in the duke.ui.Duke program.
  */
 public class Parser {
     private static final String COMMAND_LIST = "list";
@@ -24,7 +24,7 @@ public class Parser {
     private static final String COMMAND_EXIT = "bye";
 
     /**
-     * Handles parsing of user input within Duke.
+     * Handles parsing of user input within duke.ui.Duke.
      *
      * @param input by the user
      * @return a new Command represented by the input, null otherwise
