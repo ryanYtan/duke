@@ -7,6 +7,14 @@ import duke.exception.DukeException;
 import duke.exception.IllegalDateException;
 
 public class TaskFactory {
+
+    /**
+     * Returns a new Task corresponding to the user's input.
+     *
+     * @param command user input
+     * @return a new Task
+     * @throws IllegalInstructionException if user input is not recognised
+     */
     public static Task createTask(String command)
             throws IllegalInstructionException {
         String[] el = command.split("\\s+");
@@ -34,6 +42,7 @@ public class TaskFactory {
             try {
                 at = DateTime.of(event[1].trim()).toString();
             } catch (IllegalDateException e) {
+
                 // at processed as normal string
                 System.out.println(e.getMessage());
                 System.out.println("Using token as string...");
@@ -46,6 +55,13 @@ public class TaskFactory {
         }
     }
 
+    /**
+     * Returns a new Task corresponding to its fileFormattedString.
+     *
+     * @param fileFormattedString of the task
+     * @return a new Task
+     * @throws IllegalInstructionException if the string is not in the correct format
+     */
     static Task createTaskFromFileFormattedString(String fileFormattedString)
             throws DukeException {
         String[] elements = fileFormattedString.split("\\s+\\|\\s+");

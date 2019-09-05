@@ -23,6 +23,7 @@ public abstract class Command {
      * @param t the TaskList object
      * @param ui the Ui object
      * @param storage the Storage object
+     * @throws DukeException if the command is unable to execute correctly
      */
     public abstract void execute(TaskList t, Ui ui, Storage storage)
             throws DukeException;

@@ -35,9 +35,11 @@ public class Ui {
         buffer.push(ret);
         return ret;
     }
-    
+
     /**
      * Get the last command input by the user.
+     *
+     * @return a String containing the last command input by the user
      */
     public String getCommand() {
         return this.buffer.peek();
