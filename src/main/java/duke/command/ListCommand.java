@@ -17,10 +17,11 @@ public class ListCommand extends Command {
      * @param ui the Ui object
      * @param storage the Storage object
      */
-    public void execute(TaskList t, Ui ui, Storage storage) {
-        ui.print(
+    public String execute(TaskList t, Ui ui, Storage storage) {
+        System.out.println(t.toString());
+        return ui.asDukeMessage(
             new String[]{"Here are the tasks in your list:"},
-            new String[0],
+            new String[]{},
             t.asFormattedList().toArray(new String[t.size()])
         );
     }

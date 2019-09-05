@@ -23,16 +23,16 @@ public class DeleteCommand extends Command {
      * @param ui the Ui object
      * @param storage the Storage object
      */
-    public void execute(TaskList t, Ui ui, Storage storage)
+    public String execute(TaskList t, Ui ui, Storage storage)
             throws DukeException {
         try {
             Task removed = t.remove(index);
-            ui.print(
+            storage.writeToFile(t.asFileFormattedList());
+            return ui.asDukeMessage(
                 new String[]{"Note. I've removed this task:"},
                 new String[]{String.format("You now have %d tasks in the list.", t.size())},
                 removed.toString()
             );
-            storage.writeToFile(t.asFileFormattedList());
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(
                 String.format("That task does not exist! You have %d tasks in the list.", t.size())

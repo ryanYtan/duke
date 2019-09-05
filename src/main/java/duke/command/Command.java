@@ -7,7 +7,7 @@ import duke.io.Storage;
 
 public abstract class Command {
     protected String command;
-    private static final String EXIT = "bye";
+    public static final String EXIT = "bye";
 
     public Command(String command) {
         this.command = command;
@@ -25,7 +25,7 @@ public abstract class Command {
      * @param storage the Storage object
      * @throws DukeException if the command is unable to execute correctly
      */
-    public abstract void execute(TaskList t, Ui ui, Storage storage)
+    public abstract String execute(TaskList t, Ui ui, Storage storage)
             throws DukeException;
 
     @Override

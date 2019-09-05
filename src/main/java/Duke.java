@@ -1,15 +1,20 @@
 import duke.io.Ui;
 import duke.io.Storage;
+import duke.io.Parser;
+
 import duke.task.TaskList;
+
 import duke.exception.DukeException;
 import duke.exception.IllegalInstructionException;
-import duke.io.Parser;
+
 import duke.command.Command;
 
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    public String storageSuccess;
+    public String greeting;
 
     /**
      * Returns a new Duke object using the given file path.
@@ -19,39 +24,41 @@ public class Duke {
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
+        this.greeting = ui.showWelcome();
+        this.storageSuccess = this.loadTaskList();
+    }
+
+    /**
+     * Initialises tasks and returns a String indicating if TaskList was successfully loaded
+     * from storage.
+     *
+     * @return a String indicating if TaskList was successfully loaded from storage
+     */
+    private String loadTaskList() {
+        String ret;
         try {
             tasks = new TaskList(storage.load());
-            ui.showLoadingSuccess();
+            ret = ui.showLoadingSuccess();
         } catch (DukeException e) {
             tasks = new TaskList();
-            ui.showLoadingError();
+            ret = ui.showLoadingError();
         }
+        return ret;
     }
 
     /**
-     * Main logic of the program.
-     */
-    private void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException | IllegalInstructionException e) {
-                ui.print(e.getMessage());
-            }
-        }
-    }
-
-    /**
-     * Main method.
+     * Returns a string containing the user's input with some response.
      *
-     * @param args arguments called with the program
+     * @param input user's input
+     * @return a String containing the user's input and some program response
      */
-    public static void main(String[] args) {
-        new Duke("./data/duke.txt").run();
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, ui, storage);
+        } catch (DukeException | IllegalInstructionException e){
+            System.out.println(e);
+            return ui.asDukeMessage(e.getMessage());
+        }
     }
 }

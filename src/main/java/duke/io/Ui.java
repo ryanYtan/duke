@@ -59,13 +59,13 @@ public class Ui {
      * Prints the current buffer to System.out.
      */
     public void showLine() {
-        print(buffer.peek());
+        asDukeMessage(buffer.peek());
     }
 
     /**
      * Prints welcome message to System.out.
      */
-    public void showWelcome() {
+    public String showWelcome() {
         String logoOne =   " ____        _        ";
         String logoTwo =   "|  _ \\ _   _| | _____ ";
         String logoThree = "| | | | | | | |/ / _ \\";
@@ -74,19 +74,16 @@ public class Ui {
 
         String greeting = "Welcome to";
         String question = "What can I do for you today?";
-        print(
-            new String[]{greeting, logoOne, logoTwo, logoThree, logoFour, logoFive, question},
-            new String[0]
+        return asDukeMessage(
+            greeting, logoOne, logoTwo, logoThree, logoFour, logoFive, question
         );
     }
 
     /**
      * Prints error message if loading from storage fails.
      */
-    public void showLoadingError() {
-        print(
-            new String[]{},
-            new String[]{},
+    public String showLoadingError() {
+        return asDukeMessage(
             "No Task list found! Creating new Task list..."
         );
     }
@@ -94,57 +91,39 @@ public class Ui {
     /**
      * Prints success message if loading from storage succeeds.
      */
-    public void showLoadingSuccess() {
-        print(
-            new String[]{},
-            new String[]{},
+    public String showLoadingSuccess() {
+        return asDukeMessage(
             "Saved tasks successfully loaded."
         );
     }
 
     /**
-     * Prints varargs number of Strings with the format:
-     * --BORDER--
-     * beforeText[]
-     * "\t string1"
-     * "\t string2"
-     * etc.
-     * afterText[]
-     * --BORDER--
-     * 
+     * Returns a String containing the elements of beforeText, args then afterText. Each individual
+     * String is delimited with a newline character.
+     *
      * @param args strings to be printed
      */
-    public void print(String[] beforeText, String[] afterText, String... args) {
-        System.out.println("\t" + BORDER);
+    public String asDukeMessage(String[] beforeText, String[] afterText, String... args) {
+        StringBuilder ret = new StringBuilder();
         for (String s : beforeText) {
-            System.out.println("\t" + s);
+            ret.append(s).append("\n");
         }
         for (String s : args) {
-            System.out.println("\t" + s);
+            ret.append(s).append("\n");
         }
         for (String s : afterText) {
-            System.out.println("\t" + s);
+            ret.append(s).append("\n");
         }
-        System.out.println("\t" + BORDER);
+        return ret.toString();
     }
 
     /**
-     * Prints varargs number of Strings with the format:
-     * --BORDER--
-     * "\t string1"
-     * "\t string2"
-     * etc.
-     * --BORDER--
-     * 
+     * Returns a String containing the elements of args. Each individual String is delimited with
+     * a newline character.
+     *
      * @param args strings to be printed
      */
-    public void print(String... args) {
-        System.out.println("\t" + BORDER);
-        for (String s : args) {
-            System.out.println("\t" + s);
-        }
-        System.out.println("\t" + BORDER);
+    public String asDukeMessage(String... args) {
+        return asDukeMessage(new String[]{}, new String[]{}, args);
     }
-
-
 }
