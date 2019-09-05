@@ -9,15 +9,10 @@ public class TaskList {
     private ArrayList<Task> list;
 
     /**
-     * The default max capacity, although this is not enforced.
-     */
-    private static final int MAX_ITEMS = 100;
-
-    /**
-     * Constructs an empty TaskList.
+     * Constructs an empty TaskList with default capacity of 10.
      */
     public TaskList() {
-        list = new ArrayList<>(MAX_ITEMS);
+        list = new ArrayList<>();
     }
 
     /**
@@ -64,9 +59,8 @@ public class TaskList {
     }
 
     /**
-     * Returns the task at the specified index in the list. The specified index
-     * assumes a one-based list (i.e first element of the list is of index 1). The
-     * task is returned as a String.
+     * Returns the task at the specified index in the list. The specified index assumes a one-based
+     * list (i.e first element of the list is of index 1). The task is returned as a String.
      * 
      * @param index index at which the element is to be obtained.
      * @return the String representation of the task at the specified index
@@ -74,6 +68,18 @@ public class TaskList {
     public String get(int index) {
         Objects.checkIndex(index - 1, list.size());
         return list.get(index - 1).toString();
+    }
+
+    /**
+     * Removes and returns the task at the specified index in the list. The specified index
+     * assumes a one-based list (i.e first element of the list of index 1).
+     *
+     * @param index index at which the element is to be removed
+     * @return the task that was removed
+     */
+    public Task remove(int index) {
+        Objects.checkIndex(index - 1, list.size());
+        return list.remove(index - 1);
     }
 
     /**
@@ -93,17 +99,6 @@ public class TaskList {
             i++;
         }
         return ret;
-    }
-
-    /**
-     * Removes and returns the task at the specified index in the list.
-     * 
-     * @param index index at which the element is to be removed
-     * @return the task that was removed
-     */
-    public Task remove(int index) {
-        Objects.checkIndex(index - 1, list.size());
-        return list.remove(index - 1);
     }
 
     /**
@@ -135,8 +130,7 @@ public class TaskList {
     }
 
     /**
-     * Returns an String ArrayList containing the string form of this Task list to
-     * write to file.
+     * Returns a String ArrayList containing the string form of this Task list to write to file.
      * 
      * @return an String ArrayList containing the string form of this Task list to write to file
      */
@@ -150,9 +144,9 @@ public class TaskList {
 
     
     /**
-     * Returns the string representation of this Task list.
+     * Returns the String representation of this Task list.
      * 
-     * @return the string representation of this Task list
+     * @return the String representation of this Task list
      */
     @Override
     public String toString() {
