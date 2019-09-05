@@ -11,14 +11,14 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Prints the TaskList t.
+     * Returns a String representing the TaskList t.
      *
      * @param t the TaskList object
      * @param ui the Ui object
      * @param storage the Storage object
+     * @return a String representing the TaskList t
      */
     public String execute(TaskList t, Ui ui, Storage storage) {
-        System.out.println(t.toString());
         return ui.asDukeMessage(
             new String[]{"Here are the tasks in your list:"},
             new String[]{},

@@ -16,11 +16,12 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Appends the given task to t, and prints the result.
+     * Appends the given task to t, and returns the program's response to the add.
      *
      * @param t the TaskList object
      * @param ui the Ui object
      * @param storage the Storage object
+     * @return a String representing the result of the add
      */
     public String execute(TaskList t, Ui ui, Storage storage)
             throws DukeException, IndexOutOfBoundsException {

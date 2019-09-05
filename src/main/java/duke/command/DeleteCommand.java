@@ -9,6 +9,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 public class DeleteCommand extends Command {
+    /** Index to delete task from the TaskList */
     private int index;
 
     public DeleteCommand(String command, int index) {
@@ -17,14 +18,15 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Finds the task in t, deletes it and prints the result.
+     * Finds the task in t, deletes it and returns a String representing the program's response
+     * to the deletion
      *
      * @param t the TaskList object
      * @param ui the Ui object
      * @param storage the Storage object
+     * @return a String representing the deletion of the task
      */
-    public String execute(TaskList t, Ui ui, Storage storage)
-            throws DukeException {
+    public String execute(TaskList t, Ui ui, Storage storage) throws DukeException {
         try {
             Task removed = t.remove(index);
             storage.writeToFile(t.asFileFormattedList());

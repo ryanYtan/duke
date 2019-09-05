@@ -5,6 +5,10 @@ import duke.exception.DukeException;
 import duke.io.Ui;
 import duke.io.Storage;
 
+/**
+ * The Command class provides an abstract implementation of a user input command that executes
+ * a certain set of instructions based on the command.
+ */
 public abstract class Command {
     protected String command;
     public static final String EXIT = "bye";
@@ -18,12 +22,13 @@ public abstract class Command {
     }
 
     /**
-     * Executes the command defined by this object.
+     * Executes the command defined by this object and a String representing the action.
      *
      * @param t the TaskList object
      * @param ui the Ui object
      * @param storage the Storage object
      * @throws DukeException if the command is unable to execute correctly
+     * @return a String representing the action.
      */
     public abstract String execute(TaskList t, Ui ui, Storage storage)
             throws DukeException;

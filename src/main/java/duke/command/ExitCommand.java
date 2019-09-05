@@ -13,14 +13,14 @@ public class ExitCommand extends Command {
     }
 
     /**
-     * Quits the program.
+     * Quits the program and returns a String containing the good-bye message.
      *
      * @param t the TaskList object
      * @param ui the Ui object
      * @param storage the Storage object
+     * @return a String representing good-bye message
      */
-    public String execute(TaskList t, Ui ui, Storage storage)
-            throws DukeException {
+    public String execute(TaskList t, Ui ui, Storage storage) throws DukeException {
         try {
             storage.writeToFile(t.asFileFormattedList());
             return ui.asDukeMessage(

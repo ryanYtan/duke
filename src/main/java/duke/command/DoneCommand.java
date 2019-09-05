@@ -8,6 +8,7 @@ import duke.io.Storage;
 import duke.task.TaskList;
 
 public class DoneCommand extends Command {
+    /** Index to finish task from the TaskList */
     private int index;
 
     public DoneCommand(String command, int index) {
@@ -16,14 +17,14 @@ public class DoneCommand extends Command {
     }
 
     /**
-     * Finds the task in t, marks it as done and prints the result.
+     * Finds the task in t, marks it as done and returns the result.
      *
      * @param t the TaskList object
      * @param ui the Ui object
      * @param storage the Storage object
+     * @return a String representing the response by Duke from finishing a task
      */
-    public String execute(TaskList t, Ui ui, Storage storage)
-            throws DukeException {
+    public String execute(TaskList t, Ui ui, Storage storage) throws DukeException {
         try {
             t.done(index);
             storage.writeToFile(t.asFileFormattedList());
