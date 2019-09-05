@@ -5,7 +5,9 @@ import static java.util.Map.entry;
 
 import duke.exception.IllegalDateException;
 
-
+/**
+ * This DateTime class provides some methods to parsing Date and Time strings.
+ */
 public class DateTime {
     private int day;
     private int month;
@@ -124,7 +126,7 @@ public class DateTime {
 
     /**
      * Returns the string representation of this dateTime object.
-     * The output format is "dd/mm/yyyy hh:mm".
+     * The output format is "dd month year hh:mm".
      */
     public String toString() {
         Map<Integer, String> monthsMap = Map.ofEntries(
@@ -142,8 +144,7 @@ public class DateTime {
                 entry(12, "December")
         );
 
-        // return String.format("%d%s %s %d %02d:%02d ",
-        return String.format("%d%s %s %02d:%02d",
-                day, getDaySuffix(), monthsMap.get(month), hours, minutes);
+        return String.format("%d%s %s %d %02d:%02d",
+                day, getDaySuffix(), monthsMap.get(month), year, hours, minutes);
     }
 }

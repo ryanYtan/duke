@@ -10,6 +10,11 @@ import java.util.stream.Stream;
 
 import duke.exception.DukeException;
 
+/**
+ * The Storage class provides an abstraction of File handling methods specific to the
+ * Duke program. The class is able to read and write to a specified file path, and return
+ * the contents of the file to the caller.
+ */
 public class Storage {
     private String filePath;
 

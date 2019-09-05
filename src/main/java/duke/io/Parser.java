@@ -10,6 +10,9 @@ import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 
+/**
+ * The Parser class handles the parsing of user input directly in the Duke program.
+ */
 public class Parser {
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_TODO = "todo";

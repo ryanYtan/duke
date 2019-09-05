@@ -1,7 +1,8 @@
 package duke.io;
 
 /**
- *
+ * The Ui class provides some methods for I/O in the Duke program. This includes greetings,
+ * good-byes, success and error messages and a general formatting function.
  */
 public class Ui {
     /**
@@ -18,9 +19,7 @@ public class Ui {
 
         String greeting = "Welcome to";
         String question = "What can I do for you today?";
-        return asDukeMessage(
-            greeting, logoOne, logoTwo, logoThree, logoFour, logoFive, question
-        );
+        return asDukeMessage(greeting, logoOne, logoTwo, logoThree, logoFour, logoFive, question);
     }
 
     /**
@@ -29,9 +28,7 @@ public class Ui {
      * @return a new String containing an error message
      */
     public String showLoadingError() {
-        return asDukeMessage(
-            "No Task list found! Creating new Task list..."
-        );
+        return asDukeMessage("No Task list found! Creating new Task list...");
     }
 
     /**
@@ -40,9 +37,7 @@ public class Ui {
      * @return a new String containing a success message
      */
     public String showLoadingSuccess() {
-        return asDukeMessage(
-            "Saved tasks successfully loaded."
-        );
+        return asDukeMessage("Saved tasks successfully loaded.");
     }
 
     /**
