@@ -5,6 +5,10 @@ import duke.exception.DukeException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * The TaskList class provides an abstraction for list of Tasks with basic append, delete and
+ * formatting methods.
+ */
 public class TaskList {
     private ArrayList<Task> list;
 

@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * The TaskDeadline class provides an Deadline implementation of the abstract base class Task.
+ */
 public class TaskDeadline extends Task {
     private String by;
 
@@ -39,7 +42,7 @@ public class TaskDeadline extends Task {
 
     /**
      * Returns a TaskDeadline object from its file-formatted-form representation.
-     * The expected format is "D | ✓✘ | description | by"
+     * The expected format is "D | [1|0] | description | by"
      *
      * @param fileFormattedForm of a TaskDeadline object
      * @return a new TaskDeadline object
@@ -48,7 +51,7 @@ public class TaskDeadline extends Task {
         String[] elements = fileFormattedForm.split("\\s+\\|\\s+");
         String desc = elements[2];
         String by = elements[3];
-        boolean done = elements[1].equals(IS_DONE_FILE);
+        boolean done = elements[1].equals(IS_DONE);
         return TaskDeadline.of(desc, by, done);
     }
 
@@ -58,7 +61,7 @@ public class TaskDeadline extends Task {
      * @return the String representation of this Task suitable for writing to file
      */
     public String toFileFormattedString() {
-        String status = getStatusIcon().equals(IS_DONE) ? IS_DONE_FILE : IS_NOT_DONE_FILE;
+        String status = getStatusIcon().equals(IS_DONE) ? IS_DONE : IS_NOT_DONE;
         return String.format("%s | %s | %s | %s", type, status, description, by);
     }
 

@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * The TaskEvent class provides an Event implementation of the abstract base class Task.
+ */
 public class TaskEvent extends Task {
     private String at;
 
@@ -40,7 +43,7 @@ public class TaskEvent extends Task {
 
     /**
      * Returns a TaskEvent object from its file-formatted-form representation.
-     * The expected format is "E | ✓✘ | description | at"
+     * The expected format is "E | [1|0] | description | at"
      *
      * @param fileFormattedForm of a TaskEvent object
      * @return a new TaskEvent object
@@ -49,7 +52,7 @@ public class TaskEvent extends Task {
         String[] elements = fileFormattedForm.split("\\s+\\|\\s+");
         String desc = elements[2];
         String at = elements[3];
-        boolean done = elements[1].equals(IS_DONE_FILE);
+        boolean done = elements[1].equals(IS_DONE);
         return TaskEvent.of(desc, at, done);
     }
 
@@ -59,7 +62,7 @@ public class TaskEvent extends Task {
      * @return the String representation of this Task suitable for writing to file
      */
     public String toFileFormattedString() {
-        String status = getStatusIcon().equals(IS_DONE) ? IS_DONE_FILE : IS_NOT_DONE_FILE;
+        String status = getStatusIcon().equals(IS_DONE) ? IS_DONE : IS_NOT_DONE;
         return String.format("%s | %s | %s | %s", type, status, description, at);
     }
 

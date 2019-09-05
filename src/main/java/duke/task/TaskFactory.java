@@ -6,8 +6,12 @@ import duke.exception.IllegalInstructionException;
 import duke.exception.DukeException;
 import duke.exception.IllegalDateException;
 
+/**
+ * The TaskFactory class should be used to create all implementing classes of the abstract base
+ * class Task. The class provides the logic to handle the type of task to be returned to the
+ * caller.
+ */
 public class TaskFactory {
-
     /**
      * Returns a new Task corresponding to the user's input.
      *
@@ -51,7 +55,7 @@ public class TaskFactory {
             return TaskEvent.of(event[0].substring("event".length()).trim(), at);
 
         default:
-            throw new IllegalInstructionException("");
+            throw new IllegalInstructionException("Could not instantiate the given task.");
         }
     }
 

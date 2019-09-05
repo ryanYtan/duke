@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * The TaskTodo class provides a basic implementation of the abstract base class Task.
+ */
 public class TaskTodo extends Task {
     private TaskTodo(String description) {
         super(description);
@@ -34,7 +37,7 @@ public class TaskTodo extends Task {
 
     /**
      * Returns a TaskTodo object from its file-formatted-form representation.
-     * The expected format is "T | ✓✘ | description".
+     * The expected format is "T | [1|0] | description |".
      *
      * @param fileFormattedForm of a TaskTodo object
      * @return a new TaskTodo object
@@ -42,7 +45,7 @@ public class TaskTodo extends Task {
     public static TaskTodo fromFileFormattedForm(String fileFormattedForm) {
         String[] elements = fileFormattedForm.split("\\s+\\|\\s+");
         String desc = elements[2];
-        boolean done = elements[1].equals(IS_DONE_FILE);
+        boolean done = elements[1].equals(IS_DONE);
         return TaskTodo.of(desc, done);
     }
 
@@ -52,7 +55,7 @@ public class TaskTodo extends Task {
      * @return the String representation of this Task suitable for writing to file
      */
     public String toFileFormattedString() {
-        String status = getStatusIcon().equals(IS_DONE) ? IS_DONE_FILE : IS_NOT_DONE_FILE;
+        String status = getStatusIcon().equals(IS_DONE) ? IS_DONE : IS_NOT_DONE;
         return String.format("%s | %s | %s", type, status, description);
     }
 
