@@ -62,7 +62,7 @@ public class TaskList {
      * Returns the task at the specified index in the list. The specified index assumes a one-based
      * list (i.e first element of the list is of index 1). The task is returned as a String.
      * 
-     * @param index index at which the element is to be obtained.
+     * @param index index at which the element is to be obtained
      * @return the String representation of the task at the specified index
      */
     public String get(int index) {
@@ -104,7 +104,7 @@ public class TaskList {
     /**
      * Returns an String ArrayList containing the formatted form of this Task list.
      * 
-     * @return an String ArrayList containing the formatted form of this Task list.
+     * @return an String ArrayList containing the formatted form of this Task list
      */
     public ArrayList<String> asFormattedList() {
         ArrayList<String> ret = new ArrayList<>();
@@ -119,7 +119,7 @@ public class TaskList {
     /**
      * Returns an String ArrayList containing the string form of this Task list.
      * 
-     * @return an String ArrayList containing the string form of this Task list.
+     * @return an String ArrayList containing the string form of this Task list
      */
     public ArrayList<String> asStringList() {
         ArrayList<String> ret = new ArrayList<>();
@@ -132,7 +132,7 @@ public class TaskList {
     /**
      * Returns a String ArrayList containing the string form of this Task list to write to file.
      * 
-     * @return an String ArrayList containing the string form of this Task list to write to file
+     * @return a String ArrayList containing the string form of this Task list to write to file
      */
     public ArrayList<String> asFileFormattedList() {
         ArrayList<String> ret = new ArrayList<>();

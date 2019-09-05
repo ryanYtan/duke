@@ -13,6 +13,11 @@ import duke.exception.DukeException;
 public class Storage {
     private String filePath;
 
+    /**
+     * Constructs a new Storage object with the given file path.
+     *
+     * @param filePath filePath to the text storage file
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
@@ -23,8 +28,7 @@ public class Storage {
      * @return a new String ArrayList containing data in given filePath
      * @throws DukeException if the data from file cannot be loaded
      */
-    public ArrayList<String> load()
-            throws DukeException {
+    public ArrayList<String> load() throws DukeException {
         try {
             return readFile();
         } catch (IOException e) {
@@ -38,8 +42,7 @@ public class Storage {
      * @param list the list to be written
      * @throws IOException if an IOException occurs
      */
-    public void writeToFile(ArrayList<String> list)
-            throws IOException {
+    public void writeToFile(ArrayList<String> list) throws IOException {
         FileWriter fw;
         String path = filePath.substring(0, 7);
         File dir = new File(path);
@@ -54,13 +57,12 @@ public class Storage {
     }
 
     /**
-     * Helper method to get lines from the File specified.
+     * Helper method to get lines from the File specified in the file path.
      *
      * @return a new String ArrayList containing the info found in filePath.
      * @throws IOException if an IOException occurs
      */
-    private ArrayList<String> readFile()
-            throws IOException {
+    private ArrayList<String> readFile() throws IOException {
         Stream<String> stream = Files.lines(Paths.get(filePath));
         ArrayList<String> list = new ArrayList<>();
         stream.forEach(list::add);

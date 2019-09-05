@@ -21,14 +21,13 @@ public class Parser {
     private static final String COMMAND_EXIT = "bye";
 
     /**
-     * Handles parsing of user input.
+     * Handles parsing of user input within Duke.
      *
      * @param input by the user
-     * @return a new Task represented by the input, null otherwise
+     * @return a new Command represented by the input, null otherwise
      * @throws IllegalInstructionException if given input is not in the expected format
      */
-    public static Command parse(String input)
-            throws IllegalInstructionException {
+    public static Command parse(String input) throws IllegalInstructionException {
         String[] strings = input.split("\\s+");
         String command = strings[0];
 
