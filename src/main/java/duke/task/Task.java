@@ -1,13 +1,16 @@
 package duke.task;
 
+import duke.io.DateTime;
+
 /**
  * This abstract Task is the base-class of the other tasks in the task package. It provides the
  * template that all other tasks should extend.
  */
 public abstract class Task {
     String description;
-    boolean isDone;
     String type;
+    DateTime time;
+    boolean isDone;
 
     /** String representations of isDone */
     static final String IS_DONE = "1";
@@ -18,10 +21,11 @@ public abstract class Task {
      * 
      * @param description of the task
      */
-    protected Task(String description) {
+    protected Task(String description, DateTime time) {
         this.description = description;
         this.isDone = false;
         this.type = "DEFAULT";
+        this.time = time;
     }
 
     /**
@@ -30,10 +34,11 @@ public abstract class Task {
      * @param description of task
      * @param isDone truth condition of the done status of the task
      */
-    protected Task(String description, boolean isDone) {
+    protected Task(String description, boolean isDone, DateTime time) {
         this.description = description;
         this.isDone = isDone;
-        this.type = "";
+        this.type = "DEFAULT";
+        this.time = time;
     }
 
     /**

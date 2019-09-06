@@ -1,13 +1,23 @@
 package duke.io;
 
+import duke.exception.IllegalDateException;
+
+import java.time.format.DateTimeParseException;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
+
 public class DateTime implements Comparable<DateTime> {
     private LocalDateTime dateTime;
-    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d/M/y HH:mm");
-    private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("d LLL y h:mm");
-    public static final String expectedFormat = "d/m/yyyy HH:mm where \"HH:mm is in 24-hrs\"";
+
+    private static final DateTimeFormatter inputFormatter
+            = DateTimeFormatter.ofPattern("d/M/y HH:mm");
+
+    private static final DateTimeFormatter outputFormatter
+            = DateTimeFormatter.ofPattern("d LLL y h:mm");
+
+    public static final String EXPECTED_FORMAT_WARNING
+            = "dd/mm/yyyy hh:mm where \"HH:mm is in 24-hrs\"";
 
     private DateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
@@ -19,13 +29,32 @@ public class DateTime implements Comparable<DateTime> {
      * @param date the date input by the user
      * @return a new DateTime object with the given date
      */
-    public static DateTime ofDate(String date) {
-        LocalDateTime ldt = LocalDateTime.parse(date, inputFormatter);
-        return new DateTime(ldt);
+    public static DateTime ofDate(String date) throws IllegalDateException {
+        try {
+            LocalDateTime ldt = LocalDateTime.parse(date, inputFormatter);
+            return new DateTime(ldt);
+        } catch (DateTimeParseException e) {
+            throw new IllegalDateException(
+                    String.format("The expected format is %s", EXPECTED_FORMAT_WARNING));
+        }
+    }
+
+    public static DateTime ofFileFormattedDate(String date) {
+        try {
+            LocalDateTime ldt = LocalDateTime.parse(date, outputFormatter);
+            return new DateTime(ldt);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
     }
 
     @Override
     public int compareTo(DateTime o) {
-        return 1;
+        return this.dateTime.compareTo(o.dateTime);
+    }
+
+    @Override
+    public String toString() {
+        return this.dateTime.format(outputFormatter);
     }
 }

@@ -5,12 +5,12 @@ package duke.task;
  */
 public class TaskTodo extends Task {
     private TaskTodo(String description) {
-        super(description);
+        super(description, null);
         this.type = "T";
     }
 
     private TaskTodo(String description, boolean isDone) {
-        super(description, isDone);
+        super(description, isDone, null);
         this.type = "T";
     }
 
@@ -42,7 +42,7 @@ public class TaskTodo extends Task {
      * @param fileFormattedForm of a TaskTodo object
      * @return a new TaskTodo object
      */
-    public static TaskTodo fromFileFormattedForm(String fileFormattedForm) {
+    public static TaskTodo ofFileFormattedForm(String fileFormattedForm) {
         String[] elements = fileFormattedForm.split("\\s+\\|\\s+");
         String desc = elements[2];
         boolean done = elements[1].equals(IS_DONE);

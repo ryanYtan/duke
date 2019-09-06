@@ -1,5 +1,8 @@
 package duke.task;
 
+import java.util.Map;
+import java.util.function.Supplier;
+
 import duke.io.DateTime;
 import duke.io.Parser;
 
@@ -13,51 +16,7 @@ import duke.exception.IllegalDateException;
  * caller.
  */
 public class TaskFactory {
-    /**
-     * Returns a new Task corresponding to the user's input.
-     *
-     * @param command user input
-     * @return a new Task
-     * @throws IllegalInstructionException if user input is not recognised
-     */
-    public static Task createTask(String command)
-            throws IllegalInstructionException {
-        String[] el = command.split("\\s+");
-
-        switch (el[0]) {
-        case Parser.COMMAND_TODO:
-            return TaskTodo.of(command.substring("todo".length()).trim());
-
-        case Parser.COMMAND_DEADLINE:
-            String[] deadline = command.split("/by");
-            String by;
-            try {
-                by = DateTime.of(deadline[1].trim()).toString();
-            } catch (IllegalDateException e) {
-                // by processed as normal string
-                System.out.println(e.getMessage());
-                System.out.println("Using token as string...");
-                by = deadline[1].trim();
-            }
-            return TaskDeadline.of(deadline[0].substring("deadline".length()).trim(), by);
-
-        case Parser.COMMAND_EVENT:
-            String[] event = command.split("/at");
-            String at;
-            try {
-                at = DateTime.of(event[1].trim()).toString();
-            } catch (IllegalDateException e) {
-
-                // at processed as normal string
-                System.out.println(e.getMessage());
-                System.out.println("Using token as string...");
-                at = event[1].trim();
-            }
-            return TaskEvent.of(event[0].substring("event".length()).trim(), at);
-
-        default:
-            throw new IllegalInstructionException("Could not instantiate the given task.");
-        }
+    public static Task createTask(String command) throws IllegalInstructionException {
     }
 
     /**
@@ -65,19 +24,18 @@ public class TaskFactory {
      *
      * @param fileFormattedString of the task
      * @return a new Task
-     * @throws IllegalInstructionException if the string is not in the correct format
+     * @throws DukeException if the string is not in the correct format
      */
     static Task createTaskFromFileFormattedString(String fileFormattedString)
             throws DukeException {
-        String[] elements = fileFormattedString.split("\\s+\\|\\s+");
-        String type = elements[0];
+        String type = fileFormattedString.split("\\s+\\|\\s+")[0];
         switch (type) {
         case "T":
-            return TaskTodo.fromFileFormattedForm(fileFormattedString);
+            return TaskTodo.ofFileFormattedForm(fileFormattedString);
         case "D":
-            return TaskDeadline.fromFileFormattedForm(fileFormattedString);
+            return TaskDeadline.ofFileFormattedForm(fileFormattedString);
         case "E":
-            return TaskEvent.fromFileFormattedForm(fileFormattedString);
+            return TaskEvent.ofFileFormattedForm(fileFormattedString);
         default:
             throw new DukeException("Invalid string");
         }
