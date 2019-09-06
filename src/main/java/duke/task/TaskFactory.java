@@ -1,6 +1,7 @@
 package duke.task;
 
 import duke.io.DateTime;
+import duke.io.Parser;
 
 import duke.exception.IllegalInstructionException;
 import duke.exception.DukeException;
@@ -24,10 +25,10 @@ public class TaskFactory {
         String[] el = command.split("\\s+");
 
         switch (el[0]) {
-        case "todo":
+        case Parser.COMMAND_TODO:
             return TaskTodo.of(command.substring("todo".length()).trim());
 
-        case "deadline":
+        case Parser.COMMAND_DEADLINE:
             String[] deadline = command.split("/by");
             String by;
             try {
@@ -40,7 +41,7 @@ public class TaskFactory {
             }
             return TaskDeadline.of(deadline[0].substring("deadline".length()).trim(), by);
 
-        case "event":
+        case Parser.COMMAND_EVENT:
             String[] event = command.split("/at");
             String at;
             try {
