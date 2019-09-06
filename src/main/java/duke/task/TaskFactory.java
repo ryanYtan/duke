@@ -19,8 +19,7 @@ public class TaskFactory {
      * @return a new Task
      * @throws IllegalInstructionException if user input is not recognised
      */
-    public static Task createTask(String command)
-            throws IllegalInstructionException {
+    public static Task createTask(String command) throws IllegalInstructionException {
         String[] el = command.split("\\s+");
 
         switch (el[0]) {
@@ -46,7 +45,6 @@ public class TaskFactory {
             try {
                 at = DateTime.of(event[1].trim()).toString();
             } catch (IllegalDateException e) {
-
                 // at processed as normal string
                 System.out.println(e.getMessage());
                 System.out.println("Using token as string...");
@@ -64,7 +62,7 @@ public class TaskFactory {
      *
      * @param fileFormattedString of the task
      * @return a new Task
-     * @throws IllegalInstructionException if the string is not in the correct format
+     * @throws DukeException if the string is not in the correct format
      */
     static Task createTaskFromFileFormattedString(String fileFormattedString)
             throws DukeException {
@@ -72,10 +70,16 @@ public class TaskFactory {
         String type = elements[0];
         switch (type) {
         case "T":
+            assert(elements.length == 3)
+                    : String.format("Task \"%s\" is not of the correct format.", fileFormattedString);
             return TaskTodo.fromFileFormattedForm(fileFormattedString);
         case "D":
+            assert(elements.length == 4)
+                    : String.format("Task \"%s\" is not of the correct format.", fileFormattedString);
             return TaskDeadline.fromFileFormattedForm(fileFormattedString);
         case "E":
+            assert(elements.length == 4)
+                    : String.format("Task \"%s\" is not of the correct format.", fileFormattedString);
             return TaskEvent.fromFileFormattedForm(fileFormattedString);
         default:
             throw new DukeException("Invalid string");
