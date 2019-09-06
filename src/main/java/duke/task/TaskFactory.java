@@ -28,16 +28,16 @@ public class TaskFactory {
      */
     static Task createTaskFromFileFormattedString(String fileFormattedString)
             throws DukeException {
+        Map<String, Task> taskMapper = Map.of(
+                "T", TaskTodo.ofFileFormattedForm(fileFormattedString),
+                "D", TaskDeadline.ofFileFormattedForm(fileFormattedString),
+                "E", TaskEvent.ofFileFormattedForm(fileFormattedString)
+        );
         String type = fileFormattedString.split("\\s+\\|\\s+")[0];
-        switch (type) {
-        case "T":
-            return TaskTodo.ofFileFormattedForm(fileFormattedString);
-        case "D":
-            return TaskDeadline.ofFileFormattedForm(fileFormattedString);
-        case "E":
-            return TaskEvent.ofFileFormattedForm(fileFormattedString);
-        default:
-            throw new DukeException("Invalid string");
+        Task ret = taskMapper.getOrDefault(type, null);
+        if (ret == null) {
+            throw new DukeException("String is in invalid form.");
         }
+        return ret;
     }
 }
