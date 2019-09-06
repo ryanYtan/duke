@@ -1,21 +1,20 @@
 package duke.task;
 
+import duke.io.DateTime;
+
 /**
  * The TaskEvent class provides an Event implementation of the abstract base class Task.
  */
 public class TaskEvent extends Task {
-    private String at;
 
-    private TaskEvent(String description, String at) {
-        super(description);
-        this.at = at;
+    private TaskEvent(String description, DateTime at) {
+        super(description, at);
         this.type = "E";
     }
 
-    private TaskEvent(String description, String at, boolean isDone) {
-        this(description, at);
+    private TaskEvent(String description, boolean isDone, DateTime at) {
+        super(description, isDone, at);
         this.type = "E";
-        this.isDone = isDone;
     }
 
     /**
@@ -25,7 +24,7 @@ public class TaskEvent extends Task {
      * @param at this time
      * @return a new TaskEvent object.
      */
-    public static TaskEvent of(String description, String at) {
+    public static TaskEvent of(String description, DateTime at) {
         return new TaskEvent(description, at);
     }
 
@@ -37,8 +36,8 @@ public class TaskEvent extends Task {
      * @param isDone truth condition of the done status of the task
      * @return a new TaskEvent object
      */
-    public static TaskEvent of(String description, String at, boolean isDone) {
-        return new TaskEvent(description, at, isDone);
+    public static TaskEvent of(String description, boolean isDone, DateTime at) {
+        return new TaskEvent(description, isDone, at);
     }
 
     /**
@@ -48,12 +47,12 @@ public class TaskEvent extends Task {
      * @param fileFormattedForm of a TaskEvent object
      * @return a new TaskEvent object
      */
-    public static TaskEvent fromFileFormattedForm(String fileFormattedForm) {
+    public static TaskEvent ofFileFormattedForm(String fileFormattedForm) {
         String[] elements = fileFormattedForm.split("\\s+\\|\\s+");
         String desc = elements[2];
-        String at = elements[3];
+        DateTime at = DateTime.ofFileFormattedDate(elements[3]);
         boolean done = elements[1].equals(IS_DONE);
-        return TaskEvent.of(desc, at, done);
+        return TaskEvent.of(desc, done, at);
     }
 
     /**
@@ -63,7 +62,7 @@ public class TaskEvent extends Task {
      */
     public String toFileFormattedString() {
         String status = getStatusIcon().equals(IS_DONE) ? IS_DONE : IS_NOT_DONE;
-        return String.format("%s | %s | %s | %s", type, status, description, at);
+        return String.format("%s | %s | %s | %s", type, status, description, time);
     }
 
     /**
@@ -73,6 +72,6 @@ public class TaskEvent extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s][%s] %s (at: %s)", type, getStatusIcon(), description, at);
+        return String.format("[%s][%s] %s (at: %s)", type, getStatusIcon(), description, time);
     }
 }
