@@ -22,9 +22,10 @@ public class AddCommand extends Command {
      * @param ui the Ui object
      * @param storage the Storage object
      * @return a String representing the result of the add
+     * @throw DukeException if an error occurs
      */
     public String execute(TaskList t, Ui ui, Storage storage)
-            throws DukeException, IndexOutOfBoundsException {
+            throws DukeException {
         try {
             Task task = TaskFactory.createTask(command);
             t.add(task);

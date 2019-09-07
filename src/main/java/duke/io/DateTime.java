@@ -14,10 +14,10 @@ public class DateTime implements Comparable<DateTime> {
             = DateTimeFormatter.ofPattern("d/M/y HH:mm");
 
     private static final DateTimeFormatter outputFormatter
-            = DateTimeFormatter.ofPattern("d LLL y h:mm");
+            = DateTimeFormatter.ofPattern("d LLL y hh:mm a");
 
     public static final String EXPECTED_FORMAT_WARNING
-            = "dd/mm/yyyy hh:mm where \"HH:mm is in 24-hrs\"";
+            = "Invalid! The expected format is \"dd/mm/yyyy hh:mm\" where \"HH:mm is in 24-hrs\"";
 
     private DateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;

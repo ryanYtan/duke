@@ -1,7 +1,6 @@
 package duke.task;
 
 import java.util.Map;
-import java.util.function.Supplier;
 
 import duke.io.DateTime;
 import duke.io.Parser;
@@ -17,10 +16,54 @@ import duke.exception.IllegalDateException;
  */
 public class TaskFactory {
     public static Task createTask(String command) throws IllegalInstructionException {
-        Map<String, Task> taskMapper = Map.of(
-             Parser.COMMAND_TODO, TaskTodo.of(command)
-        );
-        Task ret = taskMapper.getOrDefault(type, null);
+        switch (command.split("\\s+")[0]) {
+        case Parser.COMMAND_TODO:
+            return createTodoTask(command);
+        case Parser.COMMAND_DEADLINE:
+            return createDeadlineTask(command);
+        case Parser.COMMAND_EVENT:
+            return createEventTask(command);
+        default:
+            throw new IllegalInstructionException("String is in invalid form.");
+        }
+    }
+
+    private static Task createTodoTask(String command) {
+        int indexToChop = Parser.COMMAND_TODO.length();
+        String description = command.substring(indexToChop).trim();
+        return TaskTodo.of(description);
+    }
+
+    private static Task createDeadlineTask(String command) throws IllegalInstructionException {
+        try {
+            int indexToChop = Parser.COMMAND_DEADLINE.length();
+            String[] deadline = command.split("/by");
+            System.out.println(deadline[0]);
+            System.out.println(deadline[1]);
+            String description = deadline[0].substring(indexToChop).trim();
+            DateTime by;
+            by = DateTime.ofDate(deadline[1].trim());
+            return TaskDeadline.of(description, by);
+        } catch (IllegalDateException e) {
+            throw new IllegalInstructionException(String.format("%s", DateTime.EXPECTED_FORMAT_WARNING));
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalInstructionException("String is not in valid form!");
+        }
+    }
+
+    private static Task createEventTask(String command) throws IllegalInstructionException {
+        try {
+            int indexToChop = Parser.COMMAND_EVENT.length();
+            String[] event = command.split("/at");
+            String description = event[0].substring(indexToChop).trim();
+            DateTime at;
+            at = DateTime.ofDate(event[1].trim());
+            return TaskEvent.of(description, at);
+        } catch (IllegalDateException e) {
+            throw new IllegalInstructionException(String.format("%s", DateTime.EXPECTED_FORMAT_WARNING));
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalInstructionException("String is not in valid form!");
+        }
     }
 
     /**
@@ -32,16 +75,16 @@ public class TaskFactory {
      */
     static Task createTaskFromFileFormattedString(String fileFormattedString)
             throws DukeException {
-        Map<String, Task> taskMapper = Map.of(
-            "T", TaskTodo.ofFileFormattedForm(fileFormattedString),
-            "D", TaskDeadline.ofFileFormattedForm(fileFormattedString),
-            "E", TaskEvent.ofFileFormattedForm(fileFormattedString)
-        );
         String type = fileFormattedString.split("\\s+\\|\\s+")[0];
-        Task ret = taskMapper.getOrDefault(type, null);
-        if (ret == null) {
+        switch (type) {
+        case "T":
+            return TaskTodo.ofFileFormattedForm(fileFormattedString);
+        case "D":
+            return TaskDeadline.ofFileFormattedForm(fileFormattedString);
+        case "E":
+            return TaskEvent.ofFileFormattedForm(fileFormattedString);
+        default:
             throw new DukeException("String is in invalid form.");
         }
-        return ret;
     }
 }
