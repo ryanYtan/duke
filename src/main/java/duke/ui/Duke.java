@@ -15,8 +15,8 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-    public String storageSuccess;
-    public String greeting;
+    String storageSuccess;
+    String greeting;
 
     /**
      * Returns a new duke.ui.Duke object using the given file path.
@@ -58,8 +58,7 @@ public class Duke {
         try {
             Command c = Parser.parse(input);
             return c.execute(tasks, ui, storage);
-        } catch (DukeException | IllegalInstructionException e){
-            System.out.println(e);
+        } catch (DukeException | IllegalInstructionException e) {
             return ui.asDukeMessage(e.getMessage());
         }
     }

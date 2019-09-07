@@ -1,6 +1,9 @@
 package duke.task;
 
+import java.util.Map;
+
 import duke.io.DateTime;
+import duke.io.Parser;
 
 import duke.exception.IllegalInstructionException;
 import duke.exception.DukeException;
@@ -13,47 +16,60 @@ import duke.exception.IllegalDateException;
  */
 public class TaskFactory {
     /**
-     * Returns a new Task corresponding to the user's input.
+     * Returns a new Task object given the command.
      *
-     * @param command user input
-     * @return a new Task
-     * @throws IllegalInstructionException if user input is not recognised
+     * @param command user input command
+     * @return a new Task object
+     * @throws IllegalInstructionException if the command is not of a valid form
      */
     public static Task createTask(String command) throws IllegalInstructionException {
-        String[] el = command.split("\\s+");
-
-        switch (el[0]) {
-        case "todo":
-            return TaskTodo.of(command.substring("todo".length()).trim());
-
-        case "deadline":
-            String[] deadline = command.split("/by");
-            String by;
-            try {
-                by = DateTime.of(deadline[1].trim()).toString();
-            } catch (IllegalDateException e) {
-                // by processed as normal string
-                System.out.println(e.getMessage());
-                System.out.println("Using token as string...");
-                by = deadline[1].trim();
-            }
-            return TaskDeadline.of(deadline[0].substring("deadline".length()).trim(), by);
-
-        case "event":
-            String[] event = command.split("/at");
-            String at;
-            try {
-                at = DateTime.of(event[1].trim()).toString();
-            } catch (IllegalDateException e) {
-                // at processed as normal string
-                System.out.println(e.getMessage());
-                System.out.println("Using token as string...");
-                at = event[1].trim();
-            }
-            return TaskEvent.of(event[0].substring("event".length()).trim(), at);
-
+        switch (command.split("\\s+")[0]) {
+        case Parser.COMMAND_TODO:
+            return createTodoTask(command);
+        case Parser.COMMAND_DEADLINE:
+            return createDeadlineTask(command);
+        case Parser.COMMAND_EVENT:
+            return createEventTask(command);
         default:
-            throw new IllegalInstructionException("Could not instantiate the given task.");
+            throw new IllegalInstructionException("String is in invalid form.");
+        }
+    }
+
+    private static Task createTodoTask(String command) {
+        int indexToChop = Parser.COMMAND_TODO.length();
+        String description = command.substring(indexToChop).trim();
+        return TaskTodo.of(description);
+    }
+
+    private static Task createDeadlineTask(String command) throws IllegalInstructionException {
+        try {
+            int indexToChop = Parser.COMMAND_DEADLINE.length();
+            String[] deadline = command.split("/by");
+            System.out.println(deadline[0]);
+            System.out.println(deadline[1]);
+            String description = deadline[0].substring(indexToChop).trim();
+            DateTime by;
+            by = DateTime.ofDate(deadline[1].trim());
+            return TaskDeadline.of(description, by);
+        } catch (IllegalDateException e) {
+            throw new IllegalInstructionException(String.format("%s", DateTime.EXPECTED_FORMAT_WARNING));
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalInstructionException("String is not in valid form!");
+        }
+    }
+
+    private static Task createEventTask(String command) throws IllegalInstructionException {
+        try {
+            int indexToChop = Parser.COMMAND_EVENT.length();
+            String[] event = command.split("/at");
+            String description = event[0].substring(indexToChop).trim();
+            DateTime at;
+            at = DateTime.ofDate(event[1].trim());
+            return TaskEvent.of(description, at);
+        } catch (IllegalDateException e) {
+            throw new IllegalInstructionException(String.format("%s", DateTime.EXPECTED_FORMAT_WARNING));
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalInstructionException("String is not in valid form!");
         }
     }
 
@@ -66,23 +82,16 @@ public class TaskFactory {
      */
     static Task createTaskFromFileFormattedString(String fileFormattedString)
             throws DukeException {
-        String[] elements = fileFormattedString.split("\\s+\\|\\s+");
-        String type = elements[0];
+        String type = fileFormattedString.split("\\s+\\|\\s+")[0];
         switch (type) {
         case "T":
-            assert(elements.length == 3)
-                    : String.format("Task \"%s\" is not of the correct format.", fileFormattedString);
-            return TaskTodo.fromFileFormattedForm(fileFormattedString);
+            return TaskTodo.ofFileFormattedForm(fileFormattedString);
         case "D":
-            assert(elements.length == 4)
-                    : String.format("Task \"%s\" is not of the correct format.", fileFormattedString);
-            return TaskDeadline.fromFileFormattedForm(fileFormattedString);
+            return TaskDeadline.ofFileFormattedForm(fileFormattedString);
         case "E":
-            assert(elements.length == 4)
-                    : String.format("Task \"%s\" is not of the correct format.", fileFormattedString);
-            return TaskEvent.fromFileFormattedForm(fileFormattedString);
+            return TaskEvent.ofFileFormattedForm(fileFormattedString);
         default:
-            throw new DukeException("Invalid string");
+            throw new DukeException("String is in invalid form.");
         }
     }
 }

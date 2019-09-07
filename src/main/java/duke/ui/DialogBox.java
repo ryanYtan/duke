@@ -56,6 +56,13 @@ public class DialogBox extends HBox {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Returns a new DialogBox flipped from the original orientation.
+     *
+     * @param text the given text
+     * @param img the given image
+     * @return new DialogBox with the given text and image
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

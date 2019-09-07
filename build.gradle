@@ -7,7 +7,6 @@ plugins {
 }
 
 run {
-    enableAssertions = true
     standardInput = System.in
 }
 
@@ -45,4 +44,3 @@ repositories {
 application {
     mainClassName = "Launcher"
 }
-

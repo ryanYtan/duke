@@ -1,21 +1,19 @@
 package duke.task;
 
+import duke.io.DateTime;
+
 /**
  * The TaskDeadline class provides an Deadline implementation of the abstract base class Task.
  */
 public class TaskDeadline extends Task {
-    private String by;
-
-    private TaskDeadline(String description, String by) {
-        super(description);
-        this.by = by;
+    private TaskDeadline(String description, DateTime by) {
+        super(description, by);
         this.type = "D";
     }
 
-    private TaskDeadline(String description, String by, boolean isDone) {
-        this(description, by);
+    private TaskDeadline(String description, boolean isDone, DateTime by) {
+        super(description, isDone, by);
         this.type = "D";
-        this.isDone = isDone;
     }
 
     /**
@@ -25,7 +23,7 @@ public class TaskDeadline extends Task {
      * @param by this time
      * @return a new TaskTodo object.
      */
-    public static TaskDeadline of(String description, String by) {
+    public static TaskDeadline of(String description, DateTime by) {
         return new TaskDeadline(description, by);
     }
 
@@ -36,8 +34,8 @@ public class TaskDeadline extends Task {
      * @param isDone truth condition of the done status of the task
      * @return a new TaskTodo object
      */
-    public static TaskDeadline of(String description, String by, boolean isDone) {
-        return new TaskDeadline(description, by, isDone);
+    public static TaskDeadline of(String description, boolean isDone, DateTime by) {
+        return new TaskDeadline(description, isDone, by);
     }
 
     /**
@@ -47,12 +45,12 @@ public class TaskDeadline extends Task {
      * @param fileFormattedForm of a TaskDeadline object
      * @return a new TaskDeadline object
      */
-    public static TaskDeadline fromFileFormattedForm(String fileFormattedForm) {
+    public static TaskDeadline ofFileFormattedForm(String fileFormattedForm) {
         String[] elements = fileFormattedForm.split("\\s+\\|\\s+");
         String desc = elements[2];
-        String by = elements[3];
+        DateTime by = DateTime.ofFileFormattedDate(elements[3]);
         boolean done = elements[1].equals(IS_DONE);
-        return TaskDeadline.of(desc, by, done);
+        return TaskDeadline.of(desc, done, by);
     }
 
     /**
@@ -62,7 +60,7 @@ public class TaskDeadline extends Task {
      */
     public String toFileFormattedString() {
         String status = getStatusIcon().equals(IS_DONE) ? IS_DONE : IS_NOT_DONE;
-        return String.format("%s | %s | %s | %s", type, status, description, by);
+        return String.format("%s | %s | %s | %s", type, status, description, time);
     }
 
     /**
@@ -72,6 +70,6 @@ public class TaskDeadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s][%s] %s (by: %s)", type, getStatusIcon(), description, by);
+        return String.format("[%s][%s] %s (by: %s)", type, getStatusIcon(), description, time);
     }
 }
