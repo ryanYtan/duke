@@ -1,7 +1,5 @@
 package duke.task;
 
-import java.util.Map;
-
 import duke.io.DateTime;
 import duke.io.Parser;
 

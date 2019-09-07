@@ -8,6 +8,6 @@ class TodoTaskTest {
     @Test
     void testStringForm_aBunchOfStrings_shouldMatch() {
         Task t = TaskTodo.of("asd");
-        assertEquals("T | N | asd", t.toFileFormattedString());
+        assertEquals("T | 0 | asd", t.toFileFormattedString());
     }
 }
