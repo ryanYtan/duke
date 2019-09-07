@@ -8,7 +8,7 @@ import duke.io.Storage;
 import duke.task.TaskList;
 
 public class DoneCommand extends Command {
-    /** Index to finish task from the TaskList */
+    /** Index to finish task from the TaskList. */
     private int index;
 
     public DoneCommand(String command, int index) {

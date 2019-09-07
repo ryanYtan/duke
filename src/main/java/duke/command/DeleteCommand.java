@@ -9,7 +9,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 public class DeleteCommand extends Command {
-    /** Index to delete task from the TaskList */
+    /** Index to delete task from the TaskList. */
     private int index;
 
     public DeleteCommand(String command, int index) {
@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Finds the task in t, deletes it and returns a String representing the program's response
-     * to the deletion
+     * to the deletion.
      *
      * @param t the TaskList object
      * @param ui the Ui object
