@@ -45,8 +45,6 @@ public class TaskFactory {
         try {
             int indexToChop = Parser.COMMAND_DEADLINE.length();
             String[] deadline = command.split("/by");
-            System.out.println(deadline[0]);
-            System.out.println(deadline[1]);
             String description = deadline[0].substring(indexToChop).trim();
             DateTime by;
             by = DateTime.ofDate(deadline[1].trim());
