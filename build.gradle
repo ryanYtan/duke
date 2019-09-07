@@ -44,4 +44,3 @@ repositories {
 application {
     mainClassName = "Launcher"
 }
-

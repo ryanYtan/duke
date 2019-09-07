@@ -21,6 +21,7 @@ public class ExitCommand extends Command {
      * @return a String representing good-bye message
      */
     public String execute(TaskList t, Ui ui, Storage storage) throws DukeException {
+        assert this.command.equals("bye") : "User should have input \"bye\"";
         try {
             storage.writeToFile(t.asFileFormattedList());
             return ui.asDukeMessage(
