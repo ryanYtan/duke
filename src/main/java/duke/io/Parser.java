@@ -10,8 +10,6 @@ import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 
-import java.util.Map;
-
 /**
  * The Parser class handles the parsing of user input directly in the duke.ui.Duke program.
  */
@@ -33,28 +31,31 @@ public class Parser {
      * @throws IllegalInstructionException if given input is not in the expected format
      */
     public static Command parse(String input) throws IllegalInstructionException {
-        Map<String, Command> commandMapper = Map.of(
-                COMMAND_LIST, new ListCommand(input),
-                COMMAND_TODO, new AddCommand(input),
-                COMMAND_DEADLINE, new AddCommand(input),
-                COMMAND_EVENT, new AddCommand(input),
-                COMMAND_DONE, handleDoneCommand(input),
-                COMMAND_DELETE, handleDeleteCommand(input),
-                COMMAND_FIND, new FindCommand(input),
-                COMMAND_EXIT, new ExitCommand(input.split("\\s+")[0])
-        );
-        String command = input.split("\\s+")[0];
-        Command ret = commandMapper.getOrDefault(command, null);
-        if (ret == null) {
+        String cmd = input.split("\\s+")[0];
+        switch (cmd) {
+        case COMMAND_LIST:
+            return new ListCommand(input);
+        case COMMAND_TODO:
+        case COMMAND_DEADLINE:
+        case COMMAND_EVENT:
+            return new AddCommand(input);
+        case COMMAND_FIND:
+            return new FindCommand(input);
+        case COMMAND_EXIT:
+            return new ExitCommand(cmd);
+        case COMMAND_DONE:
+            return handleDoneCommand(input);
+        case COMMAND_DELETE:
+            return handleDeleteCommand(input);
+        default:
             throw new IllegalInstructionException("Sorry! I don't know what that means.");
         }
-        return ret;
     }
 
     /**
      * Returns a Done Command if the command is in the proper form.
      *
-     * @param splitCommand the input command split by spaces
+     * @param input the input command split by spaces
      * @return a new Done Command
      * @throws IllegalInstructionException if the instruction is not valid
      */
@@ -69,7 +70,7 @@ public class Parser {
     /**
      * Returns a Delete Command if the command is in the proper form.
      *
-     * @param splitCommand the input command split by spaces
+     * @param input the input command split by spaces
      * @return a new Delete Command
      * @throws IllegalInstructionException if the instruction is not valid
      */
