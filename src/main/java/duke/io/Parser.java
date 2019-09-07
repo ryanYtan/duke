@@ -10,6 +10,8 @@ import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 
+import java.util.Map;
+
 /**
  * The Parser class handles the parsing of user input directly in the duke.ui.Duke program.
  */
@@ -31,33 +33,22 @@ public class Parser {
      * @throws IllegalInstructionException if given input is not in the expected format
      */
     public static Command parse(String input) throws IllegalInstructionException {
-        String[] strings = input.split("\\s+");
-        String command = strings[0];
-
-        switch (command) {
-        case COMMAND_LIST:
-            return new ListCommand(input);
-
-        case COMMAND_TODO:
-        case COMMAND_DEADLINE:
-        case COMMAND_EVENT:
-            return new AddCommand(input);
-
-        case COMMAND_DONE:
-            return handleDoneCommand(strings);
-
-        case COMMAND_DELETE:
-            return handleDeleteCommand(strings);
-
-        case COMMAND_FIND:
-            return new FindCommand(input);
-
-        case COMMAND_EXIT:
-            return new ExitCommand(command);
-
-        default:
+        Map<String, Command> commandMapper = Map.of(
+                COMMAND_LIST, new ListCommand(input),
+                COMMAND_TODO, new AddCommand(input),
+                COMMAND_DEADLINE, new AddCommand(input),
+                COMMAND_EVENT, new AddCommand(input),
+                COMMAND_DONE, handleDoneCommand(input),
+                COMMAND_DELETE, handleDeleteCommand(input),
+                COMMAND_FIND, new FindCommand(input),
+                COMMAND_EXIT, new ExitCommand(input.split("\\s+")[0])
+        );
+        String command = input.split("\\s+")[0];
+        Command ret = commandMapper.getOrDefault(command, null);
+        if (ret == null) {
             throw new IllegalInstructionException("Sorry! I don't know what that means.");
         }
+        return ret;
     }
 
     /**
@@ -67,11 +58,10 @@ public class Parser {
      * @return a new Done Command
      * @throws IllegalInstructionException if the instruction is not valid
      */
-    private static Command handleDoneCommand(String[] splitCommand)
+    private static Command handleDoneCommand(String input)
             throws IllegalInstructionException {
-        if (splitCommand.length < 2 || !isInteger(splitCommand[1])) {
-            throw new IllegalInstructionException("Please enter a number after \"done\"!");
-        }
+        String[] splitCommand = input.split("\\s+");
+        validateNumberBasedCommands(splitCommand);
         int index = Integer.parseInt(splitCommand[1]);
         return new DoneCommand(splitCommand[0], index);
     }
@@ -83,13 +73,20 @@ public class Parser {
      * @return a new Delete Command
      * @throws IllegalInstructionException if the instruction is not valid
      */
-    private static Command handleDeleteCommand(String[] splitCommand)
+    private static Command handleDeleteCommand(String input)
             throws IllegalInstructionException {
-        if (splitCommand.length < 2 || !isInteger(splitCommand[1])) {
-            throw new IllegalInstructionException("Please enter a number after \"delete\"!");
-        }
+        String[] splitCommand = input.split("\\s+");
+        validateNumberBasedCommands(splitCommand);
         int index = Integer.parseInt(splitCommand[1]);
         return new DeleteCommand(splitCommand[0], index);
+    }
+
+    private static void validateNumberBasedCommands(String[] splitCommand)
+            throws IllegalInstructionException {
+        boolean isInCorrectFormat = splitCommand.length < 2;
+        if (isInCorrectFormat || !isInteger(splitCommand[1])) {
+            throw new IllegalInstructionException("Please enter a number after \"delete\"!");
+        }
     }
 
     private static boolean isInteger(String number) {

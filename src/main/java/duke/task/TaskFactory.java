@@ -17,6 +17,10 @@ import duke.exception.IllegalDateException;
  */
 public class TaskFactory {
     public static Task createTask(String command) throws IllegalInstructionException {
+        Map<String, Task> taskMapper = Map.of(
+             Parser.COMMAND_TODO, TaskTodo.of(command)
+        );
+        Task ret = taskMapper.getOrDefault(type, null);
     }
 
     /**
@@ -29,9 +33,9 @@ public class TaskFactory {
     static Task createTaskFromFileFormattedString(String fileFormattedString)
             throws DukeException {
         Map<String, Task> taskMapper = Map.of(
-                "T", TaskTodo.ofFileFormattedForm(fileFormattedString),
-                "D", TaskDeadline.ofFileFormattedForm(fileFormattedString),
-                "E", TaskEvent.ofFileFormattedForm(fileFormattedString)
+            "T", TaskTodo.ofFileFormattedForm(fileFormattedString),
+            "D", TaskDeadline.ofFileFormattedForm(fileFormattedString),
+            "E", TaskEvent.ofFileFormattedForm(fileFormattedString)
         );
         String type = fileFormattedString.split("\\s+\\|\\s+")[0];
         Task ret = taskMapper.getOrDefault(type, null);
