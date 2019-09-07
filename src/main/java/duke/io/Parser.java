@@ -82,6 +82,12 @@ public class Parser {
         return new DeleteCommand(splitCommand[0], index);
     }
 
+    /**
+     * Validates commands that involve numbers.
+     *
+     * @param splitCommand command split by spaces
+     * @throws IllegalInstructionException if the instruction is not of a valid form
+     */
     private static void validateNumberBasedCommands(String[] splitCommand)
             throws IllegalInstructionException {
         boolean isInCorrectFormat = splitCommand.length < 2;

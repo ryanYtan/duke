@@ -15,6 +15,13 @@ import duke.exception.IllegalDateException;
  * caller.
  */
 public class TaskFactory {
+    /**
+     * Returns a new Task object given the command.
+     *
+     * @param command user input command
+     * @return a new Task object
+     * @throws IllegalInstructionException if the command is not of a valid form
+     */
     public static Task createTask(String command) throws IllegalInstructionException {
         switch (command.split("\\s+")[0]) {
         case Parser.COMMAND_TODO:

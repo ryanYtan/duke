@@ -58,7 +58,7 @@ public class Duke {
         try {
             Command c = Parser.parse(input);
             return c.execute(tasks, ui, storage);
-        } catch (DukeException | IllegalInstructionException e){
+        } catch (DukeException | IllegalInstructionException e) {
             return ui.asDukeMessage(e.getMessage());
         }
     }

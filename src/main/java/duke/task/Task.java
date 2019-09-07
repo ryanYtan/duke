@@ -12,9 +12,9 @@ public abstract class Task {
     DateTime time;
     boolean isDone;
 
-    /** String representations of isDone */
+    /** String representations of isDone. */
     static final String IS_DONE = "1";
-    static final String IS_NOT_DONE ="0";
+    static final String IS_NOT_DONE = "0";
 
     /**
      * Constructs a task with the given description.

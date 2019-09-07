@@ -19,8 +19,8 @@ public class FindCommand extends Command {
      * @param t the TaskList object
      * @param ui the Ui object
      * @param storage the Storage object
-     * @throws DukeException if no tasks exists within t
      * @return a String representing all matching tasks within t
+     * @throws DukeException if no tasks exists within t
      */
     public String execute(TaskList t, Ui ui, Storage storage) throws DukeException {
         try {

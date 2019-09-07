@@ -39,6 +39,12 @@ public class DateTime implements Comparable<DateTime> {
         }
     }
 
+    /**
+     * Returns a new DateTime object from a file-formatted date.
+     *
+     * @param date the date from a file
+     * @return a new DateTime object with the given date
+     */
     public static DateTime ofFileFormattedDate(String date) {
         try {
             LocalDateTime ldt = LocalDateTime.parse(date, outputFormatter);

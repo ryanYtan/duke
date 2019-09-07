@@ -35,6 +35,12 @@ public class MainWindow extends AnchorPane {
         displayPicture.setImage(userImage);
     }
 
+    /**
+     * Sets the Duke object with this MainWindow.
+     * Prints relevant greetings when the app is opened.
+     *
+     * @param d duke
+     */
     public void setDuke(Duke d) {
         duke = d;
         dialogContainer.getChildren().add(
