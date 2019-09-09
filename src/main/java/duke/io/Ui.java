@@ -47,14 +47,17 @@ public class Ui {
 
     public String showDetailedHelp() {
         String[] text = {
-                "Here are a list of commands you can try:\n",
-                "list\tShow list of tasks\n",
-                "todo\t[DESCRIPTION]\n",
-                "deadline\t[DESCRIPTION] /by [dd/mm/yyyy hh:mm]\n",
-                "event\t[DESCRIPTION] /at [dd/mm/yyyy hh:mm]\n",
-                "done\t[NUMBER]\n",
-                "delete\t[NUMBER]\n",
-                "find\t[SEARCH STRING]\n"
+            "Here are a list of commands you can try:",
+            "",
+            "list\t\tShow list of tasks",
+            "todo\t\t[DESCRIPTION]",
+            "deadline\t[DESCRIPTION] /by\t[TIME]",
+            "event\t[DESCRIPTION] /at\t[TIME]",
+            "done\t[NUMBER]",
+            "delete\t[NUMBER]",
+            "find\t\t[SEARCH STRING]",
+            "",
+            "[TIME]: [dd/mm/yyyy hh:mm]"
         };
         return asDukeMessage(text);
     }
@@ -90,5 +93,4 @@ public class Ui {
     public String asDukeMessage(String... args) {
         return asDukeMessage(new String[]{}, new String[]{}, args);
     }
-
 }

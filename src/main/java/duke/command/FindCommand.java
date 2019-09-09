@@ -20,9 +20,10 @@ public class FindCommand extends Command {
      * @param ui the Ui object
      * @param storage the Storage object
      * @return a String representing all matching tasks within t
-     * @throws DukeException if no tasks exists within t
+     * @throws IndexOutOfBoundsException if no tasks exists within t
      */
-    public String execute(TaskList t, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList t, Ui ui, Storage storage)
+            throws IndexOutOfBoundsException {
         try {
             String search = command.substring("find".length() + 1);
             ArrayList<String> tasks = t.find(search);
@@ -36,7 +37,8 @@ public class FindCommand extends Command {
                 );
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Sorry! I could not find any tasks matching that search term");
+            throw new IndexOutOfBoundsException(
+                    "Sorry! I could not find any tasks matching that search term");
         }
     }
 }
