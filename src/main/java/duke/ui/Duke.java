@@ -60,6 +60,8 @@ public class Duke {
             return c.execute(tasks, ui, storage);
         } catch (DukeException | IllegalInstructionException e) {
             return ui.showHelper();
+        } catch (IndexOutOfBoundsException e) {
+            return e.getMessage();
         }
     }
 }
