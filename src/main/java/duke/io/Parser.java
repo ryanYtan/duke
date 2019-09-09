@@ -9,6 +9,7 @@ import duke.command.DoneCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
+import duke.command.HelpCommand;
 
 /**
  * The Parser class handles the parsing of user input directly in the duke.ui.Duke program.
@@ -22,6 +23,7 @@ public class Parser {
     public static final String COMMAND_DELETE = "delete";
     public static final String COMMAND_FIND = "find";
     public static final String COMMAND_EXIT = "bye";
+    public static final String COMMAND_HELP = "help";
 
     /**
      * Handles parsing of user input within duke.ui.Duke.
@@ -47,6 +49,8 @@ public class Parser {
             return handleDoneCommand(input);
         case COMMAND_DELETE:
             return handleDeleteCommand(input);
+        case COMMAND_HELP:
+            return new HelpCommand(input);
         default:
             throw new IllegalInstructionException("Sorry! I don't know what that means.");
         }
