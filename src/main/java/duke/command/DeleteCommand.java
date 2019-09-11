@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
             Task removed = t.remove(index);
             storage.writeToFile(t.asFileFormattedList());
             return ui.asDukeMessage(
-                new String[]{"Note. I've removed this task:"},
+                new String[]{"Noted. I've removed this task:"},
                 new String[]{String.format("You now have %d tasks in the list.", t.size())},
                 removed.toString()
             );
