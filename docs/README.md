@@ -23,11 +23,14 @@ his memory. Just give him a search term and he will find it for you.
 
 ## Usage
 
-`>> ` signifies in-app input.
+> Note! `>>` indicates user input.
+
+---
+<br>
 
 ### `help`
 
-Displays a list of commands and formatting in-app.
+Displays a helpful list of commands and formatting in-app.
 
 ```
 >> help
@@ -44,6 +47,8 @@ find        [SEARCH STRING]
 
 [TIME] :    [dd/mm/yyyy hh:mm]
 ```
+---
+<br>
 
 ### `todo [DESCRIPTION]`
 
@@ -57,11 +62,15 @@ Got it. I've added this task:
 Now you have 1 tasks in the list
 ```
 
+---
+<br>
+
 ### `deadline [DESCRIPTION] /by [TIME]`
 
 Creates a new `deadline` task, a task that has a specified deadline.
 
-`[TIME]` is of the format `dd/mm/yyyy hh:mm` where `hh:mm` are in **24-hr format**.
+`[TIME]` is of the format `dd/mm/yyyy hh:mm` where `hh:mm` are in
+**24-hr format**.
 
 ```
 >> deadline write email to vendor /by 20/09/2019 23:59
@@ -71,11 +80,16 @@ Got it. I've added this task:
 Now you have 2 tasks in the list
 ```
 
+---
+<br>
+
 ### `event [DESCRIPTION] /at [TIME]`
 
-Creates a new `event` task, a task that has a timing of when the event will occur.
+Creates a new `event` task, a task that has a timing of when the event will
+occur.
 
-`[TIME]` is of the format `dd/mm/yyyy hh:mm` where `hh:mm` are in **24-hr format**.
+`[TIME]` is of the format `dd/mm/yyyy hh:mm` where `hh:mm` are in
+**24-hr format**.
 
 ```
 >> event group presentation /at 17/09/2019 14:00
@@ -84,6 +98,9 @@ Got it. I've added this task:
 [E][0] group presentation (at: 17 Sep 2019 02:00 PM)
 Now you have 3 tasks in the list
 ```
+
+---
+<br>
 
 ### `list`
 
@@ -98,12 +115,15 @@ Here are the tasks in your list:
 3. [E][0] group presentation (at: 17 Sep 2019 02:00 PM)
 ```
 
+---
+<br>
+
 ### `done [NUMBER]`
 
 Finishes a task when it is completed.
 
 `[NUMBER]` follows the task number shown by `list`.
-Duke will know if you `done` a task that is not in the list, try it!
+Duke will know if you try to `done` a task that is not in the list.
 
 ```
 >> done 1
@@ -119,12 +139,15 @@ Here are the tasks in your list:
 3. [E][0] group presentation (at: 17 Sep 2019 02:00 PM)
 ```
 
+---
+<br>
+
 ### `delete [NUMBER]`
 
 Deletes a task from the list.
 
 `[NUMBER]` follows the task number shown by `list`. Duke
-will know if you try to `delete` a task that is not in the list, try it!
+will know if you try to `delete` a task that is not in the list.
 
 ```
 >> delete 1
@@ -140,7 +163,11 @@ Here are the tasks in your list:
 2. [E][0] group presentation (at: 17 Sep 2019 02:00 PM)
 ```
 
+---
+<br>
+
 ### `find [SEARCH-TERM]`
+
 
 Finds any task that matches the given search string.
 
