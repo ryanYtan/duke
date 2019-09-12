@@ -4,6 +4,8 @@ import duke.exception.DukeException;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 /**
  * The TaskList class provides an abstraction for list of Tasks with basic append, delete and
@@ -94,15 +96,10 @@ public class TaskList {
      * @return a String ArrayList containing matching tasks
      */
     public ArrayList<String> find(String match) {
-        ArrayList<String> ret = new ArrayList<>();
-        int i = 1;
-        for (Task t : list) {
-            if (t.toString().contains(match)) {
-                ret.add(String.format("%d. %s", i, t));
-            }
-            i++;
-        }
-        return ret;
+        return this.asFormattedList()
+            .stream()
+            .filter(task -> task.toLowerCase().contains(match.toLowerCase()))
+            .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
@@ -111,26 +108,11 @@ public class TaskList {
      * @return an String ArrayList containing the formatted form of this Task list
      */
     public ArrayList<String> asFormattedList() {
-        ArrayList<String> ret = new ArrayList<>();
-        int i = 1;
-        for (Task t : list) {
-            ret.add(String.format("%d. %s", i, t));
-            i++;
-        }
-        return ret;
-    }
-
-    /**
-     * Returns an String ArrayList containing the string form of this Task list.
-     * 
-     * @return an String ArrayList containing the string form of this Task list
-     */
-    public ArrayList<String> asStringList() {
-        ArrayList<String> ret = new ArrayList<>();
-        for (Task t : list) {
-            ret.add(t.toString());
-        }
-        return ret;
+        AtomicInteger i = new AtomicInteger(1);
+        return this.list.stream()
+            .map(Object::toString)
+            .map(task -> String.format("%d. %s", i.getAndIncrement(), task))
+            .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
@@ -139,11 +121,9 @@ public class TaskList {
      * @return a String ArrayList containing the string form of this Task list to write to file
      */
     public ArrayList<String> asFileFormattedList() {
-        ArrayList<String> ret = new ArrayList<>();
-        for (Task t : list) {
-            ret.add(t.toFileFormattedString());
-        }
-        return ret;
+        return this.list.stream()
+            .map(Task::toFileFormattedString)
+            .collect(Collectors.toCollection(ArrayList::new));
     }
 
     
@@ -154,12 +134,12 @@ public class TaskList {
      */
     @Override
     public String toString() {
+        AtomicInteger i = new AtomicInteger(1);
         StringBuilder ret = new StringBuilder();
-        int i = 1;
-        for (Task t : list) {
-            ret.append(String.format("%d. %s\n", i, t));
-            i++;
-        }
+        this.asFormattedList()
+            .forEach(task -> {
+                ret.append(String.format("%d. %s\n", i.getAndIncrement(), task));
+            });
         return ret.toString();
     }
 }
