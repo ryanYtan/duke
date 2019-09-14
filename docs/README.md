@@ -2,6 +2,8 @@
 
 ## Features 
 
+![duke image](./Ui.png)
+
 **Duke** is a personal chat-bot assistant. So what can he do?
 
 #### Remember your tasks
