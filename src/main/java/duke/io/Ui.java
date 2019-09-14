@@ -45,6 +45,11 @@ public class Ui {
                 "I don't know what that means! For help: type \"help\" for more information.");
     }
 
+    /**
+     * Returns a String containing a detailed help message.
+     *
+     * @return a String containing a detailed help message.
+     */
     public String showDetailedHelp() {
         String[] text = {
             "Here are a list of commands you can try:",
